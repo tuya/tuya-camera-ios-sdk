@@ -20,7 +20,7 @@ platform :ios, '8.0'
 
 target 'your_target_name' do
 
-   pod "TuyaSmartCamera", :git => "https://gitlab.com/TuyaSmartCamera/tuyasmart_camera_ios_sdk.git"
+   pod "TuyaSmartCamera", :git => "https://github.com/TuyaInc/tuyasmart_camera_ios_sdk.git"
 
 end
 ```

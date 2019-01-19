@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 涂鸦智能摄像头APP SDK提供了与摄像头通讯的接口封装，快速实现摄像头实时视频传输，录制视频回放等功能.
                        DESC
 
-  s.homepage         = 'https://gitlab.com/TuyaSmartCamera/tuyasmart_camera_ios_sdk'
+  s.homepage         = 'https://github.com/TuyaInc/tuyasmart_camera_ios_sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'fulang@tuya.com' => 'fulang@tuya.com' }
-  s.source           = { :git => 'https://gitlab.com/TuyaSmartCamera/tuyasmart_camera_ios_sdk.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/TuyaInc/tuyasmart_camera_ios_sdk.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
