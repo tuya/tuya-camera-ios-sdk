@@ -1,0 +1,12 @@
+use_frameworks!
+
+target 'TuyaSmartCamera_Example' do
+  pod 'TuyaSmartCamera', :path => '../'
+  pod 'TuyaSmartHomeKit', :git => 'https://github.com/TuyaInc/tuyasmart_home_ios_sdk.git'
+
+  target 'TuyaSmartCamera_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
