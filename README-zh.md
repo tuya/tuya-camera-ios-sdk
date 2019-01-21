@@ -24,7 +24,7 @@ platform :ios, '8.0'
 
 target 'your_target_name' do
 
-   pod 'TuyaSmartCamera', :git => 'https://gitlab.com/TuyaSmartCamera/tuyasmart_camera_ios_sdk.git'
+   pod 'TuyaSmartCamera', :git => '3.1.0'
 
 end
 
