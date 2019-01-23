@@ -11,27 +11,27 @@
 @implementation TuyaSmartUserConfig
 
 + (NSString *)tyAppKey {
-    return @"43";
+    return <#your_app_key#>;
 }
 
 + (NSString *)tyAppSecret {
-    return @"b4d3742f1c7b705c9ea363b72d93f933";
+    return <#your_secret_key#>;
 }
 
 + (NSString *)countryCode {
-    return @"86";
+    return <#countryCode#>;
 }
 
 + (NSString *)phoneNumber {
-    return @"18670703200";
+    return <#phoneNumber#>;
 }
 
 + (NSString *)email {
-    return nil;
+    return <#email#>;
 }
 
 + (NSString *)password {
-    return @"abcd1234";
+    return <#password#>;
 }
 
 @end
