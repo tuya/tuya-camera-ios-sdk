@@ -25,6 +25,7 @@ platform :ios, '8.0'
 target 'your_target_name' do
 
    pod 'TuyaSmartCamera'
+   pod 'TuyaSmartHomeKit'
 
 end
 
