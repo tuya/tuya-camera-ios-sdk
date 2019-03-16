@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)email;
 
++ (NSString *)uid;
+
 + (NSString *)password;
 
 @end

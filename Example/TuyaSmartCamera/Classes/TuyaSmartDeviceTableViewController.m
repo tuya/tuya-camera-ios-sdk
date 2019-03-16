@@ -8,10 +8,10 @@
 
 #import "TuyaSmartDeviceTableViewController.h"
 #import <TuyaSmartCamera/TuyaSmartCameraFactory.h>
-#import "TuyaSmartCameraViewController.h"
 #import "TuyaSmartLoginManager.h"
 #import "TuyaSmartDeviceManager.h"
 #import <TuyaSmartHomeKit/TuyaSmartKit.h>
+#import "TuyaSmartCameraViewController.h"
 
 @interface TuyaSmartDeviceTableViewController ()
 
@@ -23,18 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"device list";
+    self.title = @"设备列表";
     
-    if ([TuyaSmartLoginManager isLogin]) {
+    [self doLogin:^{
         [[TuyaSmartDeviceManager sharedManager] getAllDevice];
-    }else {
-        [self doLogin:^{
-            if ([TuyaSmartLoginManager isLogin]) {
-                [[TuyaSmartDeviceManager sharedManager] getAllDevice];
-            }
-        }];
-    }
-    
+    }];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:@"deviceDidUpdate" object:nil];
 }
 
@@ -47,15 +40,25 @@
     NSString *countryCode = [TuyaSmartUserConfig countryCode];
     NSString *phoneNumer = [TuyaSmartUserConfig phoneNumber];
     NSString *email = [TuyaSmartUserConfig email];
+    NSString *uid = [TuyaSmartUserConfig uid];
     NSString *password = [TuyaSmartUserConfig password];
-    if (phoneNumer.length > 0) {
+    if (uid.length > 0) {
+        [TuyaSmartLoginManager loginByUid:countryCode uid:uid password:password complete:^(NSError * _Nonnull error) {
+            if (error) {
+                NSLog(@"login error: %@", error);
+            }
+            !complete?:complete();
+        }];
+    }
+    else if (phoneNumer.length > 0) {
         [TuyaSmartLoginManager loginByPhone:countryCode phoneNumber:phoneNumer password:password complete:^(NSError * _Nonnull error) {
             if (error) {
                 NSLog(@"login error: %@", error);
             }
             !complete?:complete();
         }];
-    }else if (email.length > 0) {
+    }
+    else if (email.length > 0) {
         [TuyaSmartLoginManager loginByEmail:countryCode email:email password:password complete:^(NSError * _Nonnull error) {
             if (error) {
                 NSLog(@"login error: %@", error);
@@ -65,10 +68,13 @@
     }
 }
 
+#pragma mark - private
+
 - (void)reloadData {
     _dataSource = [TuyaSmartDeviceManager sharedManager].deviceList;
     [self.tableView reloadData];
 }
+
 
 #pragma mark - Table view data source
 
@@ -88,8 +94,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     TuyaSmartDeviceModel *deviceMode = [self.dataSource objectAtIndex:indexPath.row];
+    
     TuyaSmartCameraViewController *cameraVC = [[TuyaSmartCameraViewController alloc] initWithDeviceId:deviceMode.devId];
     [self.navigationController pushViewController:cameraVC animated:YES];
 }
+
+
 
 @end

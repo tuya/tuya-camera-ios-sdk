@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C302E1AB89FA53053DA0B08 /* Pods_TuyaSmartCamera_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2D2B734BC56580F396F50C2 /* Pods_TuyaSmartCamera_Example.framework */; };
+		3C4EB1C0CDAABC564903381B /* libPods-TuyaSmartCamera_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5590A3C69AF3533938A7D314 /* libPods-TuyaSmartCamera_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,17 +21,24 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
-		7708146F21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708146E21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.m */; };
-		7739643621D207F600566A8B /* NSDate+TuyaSmart.m in Sources */ = {isa = PBXBuildFile; fileRef = 7739643521D207F600566A8B /* NSDate+TuyaSmart.m */; };
-		7757664021D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7757663F21D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.m */; };
-		7757664C21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7757664A21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.m */; };
-		7757664D21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7757664B21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.xib */; };
-		7757665121D0E64400BAA7D6 /* TuyaSmartControlModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7757665021D0E64400BAA7D6 /* TuyaSmartControlModel.m */; };
-		77A7238021DCC3BF00186154 /* TuyaSmartLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A7237F21DCC3BF00186154 /* TuyaSmartLoginManager.m */; };
-		77A7238321DDA5A200186154 /* TuyaSmartDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A7238221DDA5A200186154 /* TuyaSmartDeviceManager.m */; };
-		77ACCDAF21EF1E9F0058244D /* TuyaSmartUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 77ACCDAD21EF1E9F0058244D /* TuyaSmartUserConfig.m */; };
+		77CDEE2C223D086E00F099BD /* TuyaSmartCameraSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE05223D086E00F099BD /* TuyaSmartCameraSettingViewController.m */; };
+		77CDEE2E223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE0B223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.m */; };
+		77CDEE2F223D086E00F099BD /* TuyaSmartCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE0C223D086E00F099BD /* TuyaSmartCameraViewController.m */; };
+		77CDEE31223D086E00F099BD /* TuyaSmartCameraControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE10223D086E00F099BD /* TuyaSmartCameraControlView.m */; };
+		77CDEE32223D086E00F099BD /* TYCameraRecordListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE11223D086E00F099BD /* TYCameraRecordListView.m */; };
+		77CDEE33223D086E00F099BD /* TYCameraCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE12223D086E00F099BD /* TYCameraCalendarCollectionViewCell.m */; };
+		77CDEE34223D086E00F099BD /* TuyaSmartCameraControlButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE14223D086E00F099BD /* TuyaSmartCameraControlButton.m */; };
+		77CDEE35223D086E00F099BD /* TuyaSmartSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE15223D086E00F099BD /* TuyaSmartSwitchCell.m */; };
+		77CDEE36223D086E00F099BD /* TYCameraRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE19223D086E00F099BD /* TYCameraRecordCell.m */; };
+		77CDEE37223D086E00F099BD /* TYCameraCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE1B223D086E00F099BD /* TYCameraCalendarView.m */; };
+		77CDEE38223D086E00F099BD /* TuyaSmartDeviceTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE1F223D086E00F099BD /* TuyaSmartDeviceTableViewController.m */; };
+		77CDEE39223D086E00F099BD /* TuyaSmartUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE20223D086E00F099BD /* TuyaSmartUserConfig.m */; };
+		77CDEE3B223D086E00F099BD /* TYPermissionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE23223D086E00F099BD /* TYPermissionUtil.m */; };
+		77CDEE3D223D086E00F099BD /* TuyaSmartDeviceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE25223D086E00F099BD /* TuyaSmartDeviceManager.m */; };
+		77CDEE3E223D086E00F099BD /* NSDate+TuyaSmart.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE27223D086E00F099BD /* NSDate+TuyaSmart.m */; };
+		77CDEE3F223D086E00F099BD /* TuyaSmartLoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CDEE29223D086E00F099BD /* TuyaSmartLoginManager.m */; };
+		83582E120848B855F053B0D1 /* libPods-TuyaSmartCamera_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07B904A3CBCB7CD6BB88DB8 /* libPods-TuyaSmartCamera_Tests.a */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		967F6BDF769C525776C417CA /* Pods_TuyaSmartCamera_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F709FC9ABD933E475DD5700 /* Pods_TuyaSmartCamera_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,8 +53,8 @@
 
 /* Begin PBXFileReference section */
 		39BE4D255119486306BA9F38 /* Pods-TuyaSmartCamera_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartCamera_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuyaSmartCamera_Tests/Pods-TuyaSmartCamera_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		3F709FC9ABD933E475DD5700 /* Pods_TuyaSmartCamera_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuyaSmartCamera_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EE3B74FE1C8190F6034E71F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		5590A3C69AF3533938A7D314 /* libPods-TuyaSmartCamera_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuyaSmartCamera_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* TuyaSmartCamera_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuyaSmartCamera_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -67,29 +74,44 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		653C1A922702C038E09EC359 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7708146D21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartControlCollectionViewCell.h; sourceTree = "<group>"; };
-		7708146E21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartControlCollectionViewCell.m; sourceTree = "<group>"; };
-		7739643421D207F600566A8B /* NSDate+TuyaSmart.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+TuyaSmart.h"; sourceTree = "<group>"; };
-		7739643521D207F600566A8B /* NSDate+TuyaSmart.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TuyaSmart.m"; sourceTree = "<group>"; };
-		7757663E21D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartDeviceTableViewController.h; sourceTree = "<group>"; };
-		7757663F21D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartDeviceTableViewController.m; sourceTree = "<group>"; };
-		7757664921D0E25E00BAA7D6 /* TuyaSmartCameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraViewController.h; sourceTree = "<group>"; };
-		7757664A21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraViewController.m; sourceTree = "<group>"; };
-		7757664B21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TuyaSmartCameraViewController.xib; sourceTree = "<group>"; };
-		7757664F21D0E64400BAA7D6 /* TuyaSmartControlModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartControlModel.h; sourceTree = "<group>"; };
-		7757665021D0E64400BAA7D6 /* TuyaSmartControlModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartControlModel.m; sourceTree = "<group>"; };
-		77A7237E21DCC3BF00186154 /* TuyaSmartLoginManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartLoginManager.h; sourceTree = "<group>"; };
-		77A7237F21DCC3BF00186154 /* TuyaSmartLoginManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartLoginManager.m; sourceTree = "<group>"; };
-		77A7238121DDA5A200186154 /* TuyaSmartDeviceManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TuyaSmartDeviceManager.h; sourceTree = "<group>"; };
-		77A7238221DDA5A200186154 /* TuyaSmartDeviceManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartDeviceManager.m; sourceTree = "<group>"; };
-		77ACCDAD21EF1E9F0058244D /* TuyaSmartUserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartUserConfig.m; sourceTree = "<group>"; };
-		77ACCDAE21EF1E9F0058244D /* TuyaSmartUserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartUserConfig.h; sourceTree = "<group>"; };
+		77CDEE01223D086E00F099BD /* TuyaSmartDeviceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartDeviceManager.h; sourceTree = "<group>"; };
+		77CDEE05223D086E00F099BD /* TuyaSmartCameraSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraSettingViewController.m; sourceTree = "<group>"; };
+		77CDEE06223D086E00F099BD /* TuyaSmartCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraViewController.h; sourceTree = "<group>"; };
+		77CDEE07223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraPlaybackViewController.h; sourceTree = "<group>"; };
+		77CDEE0A223D086E00F099BD /* TuyaSmartCameraSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraSettingViewController.h; sourceTree = "<group>"; };
+		77CDEE0B223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraPlaybackViewController.m; sourceTree = "<group>"; };
+		77CDEE0C223D086E00F099BD /* TuyaSmartCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraViewController.m; sourceTree = "<group>"; };
+		77CDEE10223D086E00F099BD /* TuyaSmartCameraControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraControlView.m; sourceTree = "<group>"; };
+		77CDEE11223D086E00F099BD /* TYCameraRecordListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCameraRecordListView.m; sourceTree = "<group>"; };
+		77CDEE12223D086E00F099BD /* TYCameraCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCameraCalendarCollectionViewCell.m; sourceTree = "<group>"; };
+		77CDEE13223D086E00F099BD /* TYCameraRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCameraRecordCell.h; sourceTree = "<group>"; };
+		77CDEE14223D086E00F099BD /* TuyaSmartCameraControlButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraControlButton.m; sourceTree = "<group>"; };
+		77CDEE15223D086E00F099BD /* TuyaSmartSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartSwitchCell.m; sourceTree = "<group>"; };
+		77CDEE16223D086E00F099BD /* TYCameraCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCameraCalendarView.h; sourceTree = "<group>"; };
+		77CDEE17223D086E00F099BD /* TuyaSmartCameraControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraControlView.h; sourceTree = "<group>"; };
+		77CDEE18223D086E00F099BD /* TYCameraRecordListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCameraRecordListView.h; sourceTree = "<group>"; };
+		77CDEE19223D086E00F099BD /* TYCameraRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCameraRecordCell.m; sourceTree = "<group>"; };
+		77CDEE1A223D086E00F099BD /* TYCameraCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYCameraCalendarCollectionViewCell.h; sourceTree = "<group>"; };
+		77CDEE1B223D086E00F099BD /* TYCameraCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYCameraCalendarView.m; sourceTree = "<group>"; };
+		77CDEE1C223D086E00F099BD /* TuyaSmartSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartSwitchCell.h; sourceTree = "<group>"; };
+		77CDEE1D223D086E00F099BD /* TuyaSmartCameraControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraControlButton.h; sourceTree = "<group>"; };
+		77CDEE1E223D086E00F099BD /* NSDate+TuyaSmart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TuyaSmart.h"; sourceTree = "<group>"; };
+		77CDEE1F223D086E00F099BD /* TuyaSmartDeviceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartDeviceTableViewController.m; sourceTree = "<group>"; };
+		77CDEE20223D086E00F099BD /* TuyaSmartUserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartUserConfig.m; sourceTree = "<group>"; };
+		77CDEE22223D086E00F099BD /* TuyaSmartLoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartLoginManager.h; sourceTree = "<group>"; };
+		77CDEE23223D086E00F099BD /* TYPermissionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPermissionUtil.m; sourceTree = "<group>"; };
+		77CDEE25223D086E00F099BD /* TuyaSmartDeviceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartDeviceManager.m; sourceTree = "<group>"; };
+		77CDEE26223D086E00F099BD /* TuyaSmartDeviceTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartDeviceTableViewController.h; sourceTree = "<group>"; };
+		77CDEE27223D086E00F099BD /* NSDate+TuyaSmart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TuyaSmart.m"; sourceTree = "<group>"; };
+		77CDEE28223D086E00F099BD /* TYPermissionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPermissionUtil.h; sourceTree = "<group>"; };
+		77CDEE29223D086E00F099BD /* TuyaSmartLoginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartLoginManager.m; sourceTree = "<group>"; };
+		77CDEE2B223D086E00F099BD /* TuyaSmartUserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartUserConfig.h; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B07B904A3CBCB7CD6BB88DB8 /* libPods-TuyaSmartCamera_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuyaSmartCamera_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48CAB5EA93F2D71CC50F8D2 /* Pods-TuyaSmartCamera_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartCamera_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuyaSmartCamera_Tests/Pods-TuyaSmartCamera_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		BBD5D9C0FA860C2D17ECADAC /* Pods-TuyaSmartCamera_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartCamera_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TuyaSmartCamera_Example/Pods-TuyaSmartCamera_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		C08177514A2B1373D09A8CEE /* Pods-TuyaSmartCamera_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartCamera_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuyaSmartCamera_Example/Pods-TuyaSmartCamera_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D596F75589A70113AAF47B46 /* TuyaSmartCamera.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TuyaSmartCamera.podspec; path = ../TuyaSmartCamera.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E2D2B734BC56580F396F50C2 /* Pods_TuyaSmartCamera_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TuyaSmartCamera_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +122,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				2C302E1AB89FA53053DA0B08 /* Pods_TuyaSmartCamera_Example.framework in Frameworks */,
+				3C4EB1C0CDAABC564903381B /* libPods-TuyaSmartCamera_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +133,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				967F6BDF769C525776C417CA /* Pods_TuyaSmartCamera_Tests.framework in Frameworks */,
+				83582E120848B855F053B0D1 /* libPods-TuyaSmartCamera_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +179,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				E2D2B734BC56580F396F50C2 /* Pods_TuyaSmartCamera_Example.framework */,
-				3F709FC9ABD933E475DD5700 /* Pods_TuyaSmartCamera_Tests.framework */,
+				5590A3C69AF3533938A7D314 /* libPods-TuyaSmartCamera_Example.a */,
+				B07B904A3CBCB7CD6BB88DB8 /* libPods-TuyaSmartCamera_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,7 +188,7 @@
 		6003F593195388D20070C39A /* Example for TuyaSmartCamera */ = {
 			isa = PBXGroup;
 			children = (
-				7757663121D0C5B800BAA7D6 /* Classes */,
+				77CDEE00223D086E00F099BD /* Classes */,
 				6003F59C195388D20070C39A /* TuyaSmartAppDelegate.h */,
 				6003F59D195388D20070C39A /* TuyaSmartAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -218,60 +240,67 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
-		7708147021D0E80F002E5C16 /* Views */ = {
+		77CDEE00223D086E00F099BD /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				7708146D21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.h */,
-				7708146E21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.m */,
+				77CDEE03223D086E00F099BD /* Camera */,
+				77CDEE26223D086E00F099BD /* TuyaSmartDeviceTableViewController.h */,
+				77CDEE1F223D086E00F099BD /* TuyaSmartDeviceTableViewController.m */,
+				77CDEE2B223D086E00F099BD /* TuyaSmartUserConfig.h */,
+				77CDEE20223D086E00F099BD /* TuyaSmartUserConfig.m */,
+				77CDEE22223D086E00F099BD /* TuyaSmartLoginManager.h */,
+				77CDEE29223D086E00F099BD /* TuyaSmartLoginManager.m */,
+				77CDEE01223D086E00F099BD /* TuyaSmartDeviceManager.h */,
+				77CDEE25223D086E00F099BD /* TuyaSmartDeviceManager.m */,
+				77CDEE1E223D086E00F099BD /* NSDate+TuyaSmart.h */,
+				77CDEE27223D086E00F099BD /* NSDate+TuyaSmart.m */,
+				77CDEE28223D086E00F099BD /* TYPermissionUtil.h */,
+				77CDEE23223D086E00F099BD /* TYPermissionUtil.m */,
 			);
-			name = Views;
+			path = Classes;
 			sourceTree = "<group>";
 		};
-		7757663121D0C5B800BAA7D6 /* Classes */ = {
+		77CDEE03223D086E00F099BD /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				7708147021D0E80F002E5C16 /* Views */,
-				7757664E21D0E61B00BAA7D6 /* Model */,
-				7757663821D0C72400BAA7D6 /* ViewControllers */,
-				7757663721D0C71E00BAA7D6 /* Utils */,
+				77CDEE04223D086E00F099BD /* ViewController */,
+				77CDEE0F223D086E00F099BD /* Views */,
 			);
-			name = Classes;
+			path = Camera;
 			sourceTree = "<group>";
 		};
-		7757663721D0C71E00BAA7D6 /* Utils */ = {
+		77CDEE04223D086E00F099BD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7739643421D207F600566A8B /* NSDate+TuyaSmart.h */,
-				7739643521D207F600566A8B /* NSDate+TuyaSmart.m */,
-				77A7237E21DCC3BF00186154 /* TuyaSmartLoginManager.h */,
-				77A7237F21DCC3BF00186154 /* TuyaSmartLoginManager.m */,
-				77A7238121DDA5A200186154 /* TuyaSmartDeviceManager.h */,
-				77A7238221DDA5A200186154 /* TuyaSmartDeviceManager.m */,
-				77ACCDAE21EF1E9F0058244D /* TuyaSmartUserConfig.h */,
-				77ACCDAD21EF1E9F0058244D /* TuyaSmartUserConfig.m */,
+				77CDEE06223D086E00F099BD /* TuyaSmartCameraViewController.h */,
+				77CDEE0C223D086E00F099BD /* TuyaSmartCameraViewController.m */,
+				77CDEE07223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.h */,
+				77CDEE0B223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.m */,
+				77CDEE0A223D086E00F099BD /* TuyaSmartCameraSettingViewController.h */,
+				77CDEE05223D086E00F099BD /* TuyaSmartCameraSettingViewController.m */,
 			);
-			name = Utils;
+			path = ViewController;
 			sourceTree = "<group>";
 		};
-		7757663821D0C72400BAA7D6 /* ViewControllers */ = {
+		77CDEE0F223D086E00F099BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7757663E21D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.h */,
-				7757663F21D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.m */,
-				7757664921D0E25E00BAA7D6 /* TuyaSmartCameraViewController.h */,
-				7757664A21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.m */,
-				7757664B21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.xib */,
+				77CDEE17223D086E00F099BD /* TuyaSmartCameraControlView.h */,
+				77CDEE10223D086E00F099BD /* TuyaSmartCameraControlView.m */,
+				77CDEE18223D086E00F099BD /* TYCameraRecordListView.h */,
+				77CDEE11223D086E00F099BD /* TYCameraRecordListView.m */,
+				77CDEE16223D086E00F099BD /* TYCameraCalendarView.h */,
+				77CDEE1B223D086E00F099BD /* TYCameraCalendarView.m */,
+				77CDEE1A223D086E00F099BD /* TYCameraCalendarCollectionViewCell.h */,
+				77CDEE12223D086E00F099BD /* TYCameraCalendarCollectionViewCell.m */,
+				77CDEE13223D086E00F099BD /* TYCameraRecordCell.h */,
+				77CDEE19223D086E00F099BD /* TYCameraRecordCell.m */,
+				77CDEE1C223D086E00F099BD /* TuyaSmartSwitchCell.h */,
+				77CDEE15223D086E00F099BD /* TuyaSmartSwitchCell.m */,
+				77CDEE1D223D086E00F099BD /* TuyaSmartCameraControlButton.h */,
+				77CDEE14223D086E00F099BD /* TuyaSmartCameraControlButton.m */,
 			);
-			name = ViewControllers;
-			sourceTree = "<group>";
-		};
-		7757664E21D0E61B00BAA7D6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7757664F21D0E64400BAA7D6 /* TuyaSmartControlModel.h */,
-				7757665021D0E64400BAA7D6 /* TuyaSmartControlModel.m */,
-			);
-			name = Model;
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +314,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				5647A7ADD2B0635CD843EF53 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -360,7 +388,6 @@
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
-				7757664D21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,32 +421,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5647A7ADD2B0635CD843EF53 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TuyaSmartCamera_Example/Pods-TuyaSmartCamera_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/MQTTClient/MQTTClient.framework",
-				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
-				"${BUILT_PRODUCTS_DIR}/UICKeyChainStore/UICKeyChainStore.framework",
-				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MQTTClient.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UICKeyChainStore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TuyaSmartCamera_Example/Pods-TuyaSmartCamera_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9A39E467CDFC1B31959ABFBC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,16 +446,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7757664021D0C78600BAA7D6 /* TuyaSmartDeviceTableViewController.m in Sources */,
-				77ACCDAF21EF1E9F0058244D /* TuyaSmartUserConfig.m in Sources */,
+				77CDEE35223D086E00F099BD /* TuyaSmartSwitchCell.m in Sources */,
+				77CDEE3B223D086E00F099BD /* TYPermissionUtil.m in Sources */,
+				77CDEE2C223D086E00F099BD /* TuyaSmartCameraSettingViewController.m in Sources */,
+				77CDEE32223D086E00F099BD /* TYCameraRecordListView.m in Sources */,
+				77CDEE33223D086E00F099BD /* TYCameraCalendarCollectionViewCell.m in Sources */,
+				77CDEE37223D086E00F099BD /* TYCameraCalendarView.m in Sources */,
+				77CDEE3D223D086E00F099BD /* TuyaSmartDeviceManager.m in Sources */,
+				77CDEE36223D086E00F099BD /* TYCameraRecordCell.m in Sources */,
+				77CDEE2E223D086E00F099BD /* TuyaSmartCameraPlaybackViewController.m in Sources */,
+				77CDEE38223D086E00F099BD /* TuyaSmartDeviceTableViewController.m in Sources */,
+				77CDEE2F223D086E00F099BD /* TuyaSmartCameraViewController.m in Sources */,
 				6003F59E195388D20070C39A /* TuyaSmartAppDelegate.m in Sources */,
-				7708146F21D0E80B002E5C16 /* TuyaSmartControlCollectionViewCell.m in Sources */,
-				7757664C21D0E25E00BAA7D6 /* TuyaSmartCameraViewController.m in Sources */,
-				77A7238321DDA5A200186154 /* TuyaSmartDeviceManager.m in Sources */,
-				77A7238021DCC3BF00186154 /* TuyaSmartLoginManager.m in Sources */,
-				7739643621D207F600566A8B /* NSDate+TuyaSmart.m in Sources */,
-				7757665121D0E64400BAA7D6 /* TuyaSmartControlModel.m in Sources */,
+				77CDEE34223D086E00F099BD /* TuyaSmartCameraControlButton.m in Sources */,
+				77CDEE3E223D086E00F099BD /* NSDate+TuyaSmart.m in Sources */,
+				77CDEE3F223D086E00F099BD /* TuyaSmartLoginManager.m in Sources */,
+				77CDEE31223D086E00F099BD /* TuyaSmartCameraControlView.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
+				77CDEE39223D086E00F099BD /* TuyaSmartUserConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

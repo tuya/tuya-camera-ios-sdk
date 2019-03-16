@@ -20,7 +20,13 @@ Tuya Smart Camera SDK provides the interface package for the communication with 
 Add the following line to your Podfile:
 
 ```ruby
-pod 'TuyaSmartCamera', '3.1.0'
+platform :ios, '8.0'
+
+target 'your_target_name' do
+
+pod 'TuyaSmartCamera'
+
+end
 ```
 
 Execute command ```pod update```in the project's root directory to begin integration.

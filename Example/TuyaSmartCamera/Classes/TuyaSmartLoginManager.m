@@ -11,8 +11,22 @@
 
 @implementation TuyaSmartLoginManager
 
-+ (BOOL)isLogin {
-    return [[TuyaSmartUser sharedInstance] isLogin];
++ (instancetype)sharedManager {
+    static TuyaSmartLoginManager *_instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _instance = [TuyaSmartLoginManager new];
+    });
+    return _instance;
+}
+
++ (void)loginByUid:(NSString *)countryCode
+               uid:(NSString *)uid
+          password:(NSString *)password
+          complete:(void(^)(NSError *error))complete {
+    [[TuyaSmartUser sharedInstance] loginByUid:uid password:password countryCode:countryCode success:^{
+        !complete?:complete(nil);
+    } failure:complete];
 }
 
 + (void)loginByPhone:(NSString *)countryCode

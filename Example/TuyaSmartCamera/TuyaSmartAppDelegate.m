@@ -7,20 +7,21 @@
 //
 
 #import "TuyaSmartAppDelegate.h"
-#import "TuyaSmartDeviceTableViewController.h"
+#import <TuyaSmartCamera/TuyaSmartCameraFactory.h>
 #import <TuyaSmartHomeKit/TuyaSmartKit.h>
+#import "TuyaSmartDeviceTableViewController.h"
 
 @implementation TuyaSmartAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [[TuyaSmartSDK sharedInstance] startWithAppKey:[TuyaSmartUserConfig tyAppKey]
-                                         secretKey:[TuyaSmartUserConfig tyAppSecret]];
+    [[TuyaSmartSDK sharedInstance] startWithAppKey:[TuyaSmartUserConfig tyAppKey] secretKey:[TuyaSmartUserConfig tyAppSecret]];
     [[TuyaSmartSDK sharedInstance] setDebugMode:YES];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     UIViewController *vc = [TuyaSmartDeviceTableViewController new];
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:vc];
     [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
