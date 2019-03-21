@@ -24,11 +24,13 @@ platform :ios, '8.0'
 
 target 'your_target_name' do
 
-pod 'TuyaSmartCamera'
+pod 'TuyaSmartCamera/ALL'
 pod 'TuyaSmartHomeKit'
 
 end
 ```
+
+if you just want integrate p2p 2.0 camera, you could use ```pod 'TuyaSmartCamera'```.
 
 Execute command ```pod update```in the project's root directory to begin integration.
 
