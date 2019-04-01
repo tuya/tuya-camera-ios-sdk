@@ -24,12 +24,14 @@ platform :ios, '8.0'
 
 target 'your_target_name' do
 
-   pod 'TuyaSmartCamera'
-   pod 'TuyaSmartHomeKit'
+	pod 'TuyaSmartCamera/ALL'
+	pod 'TuyaSmartHomeKit'
 
 end
 
 ```
+
+如果你只想要集成 p2p 2.0 的 SDK，可以使用```pod 'TuyaSmartCamera'```。
 
 然后在项目根目录下执行`pod update`命令，集成第三方库。
 
