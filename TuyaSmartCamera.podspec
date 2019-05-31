@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TuyaSmartCamera'
-  s.version          = '3.1.2'
+  s.version          = '3.1.5'
   s.summary          = '涂鸦智能摄像头iOS SDK'
 
 # This description is used to generate tags and improve search results.
@@ -24,8 +24,10 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/TuyaInc/tuyasmart_camera_ios_sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'fulang@tuya.com' => 'fulang@tuya.com' }
-  s.source           = { :http => "https://airtake-public-data.oss-cn-hangzhou.aliyuncs.com/smart/app/package/sdk/ios/#{s.name}-#{s.version}.zip", :type => "zip" }
+  s.source           = { :http => "https://airtake-public-data.oss-cn-hangzhou.aliyuncs.com/smart/app/package/sdk/ios/TuyaSmartCamera-3.1.3.zip", :type => "zip" }
 
+  s.static_framework = true
+  
   s.ios.deployment_target = '8.0'
   
   s.libraries  = 'c++', 'z', 'iconv', 'bz2', 'resolv'

@@ -22,7 +22,7 @@
 #define kControlPhoto       @"photo"
 #define kControlPlayback    @"playback"
 
-@interface TuyaSmartCameraViewController ()<TuyaSmartCameraObserver, TuyaSmartCameraControlViewDelegate>
+@interface TuyaSmartCameraViewController ()<TuyaSmartCameraObserver, TuyaSmartCameraControlViewDelegate, TuyaSmartCameraDPObserver>
 
 @property (nonatomic, strong) NSString *devId;
 
@@ -54,6 +54,7 @@
     if (self = [super initWithNibName:nil bundle:nil]) {
         _devId = devId;
         _camera = [[TuyaSmartCameraDefault alloc] initWithDeviceId:devId];
+        [_camera.dpManager addObserver:self];
     }
     return self;
 }
@@ -85,6 +86,7 @@
     [super viewWillDisappear:animated];
     [self.camera stopPreview];
     [self.camera removeObserver:self];
+    [self.camera.dpManager removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -115,6 +117,12 @@
     self.stateLabel.hidden = YES;
 }
 
+- (void)cameraDPDidUpdate:(TuyaSmartCameraDPManager *)manager dps:(NSDictionary *)dpsData {
+    if ([[dpsData objectForKey:TuyaSmartCameraWirelessAwakeDPName] boolValue]) {
+        [self retryAction];
+    }
+}
+
 #pragma mark - Action
 
 - (void)settingAction {
@@ -125,16 +133,38 @@
 
 - (void)retryAction {
     [self.controlView disableAllControl];
-    if (self.camera.isConnected) {
-        [self.camera.videoView tuya_clear];
-        [self.videoContainer addSubview:self.camera.videoView];
-        self.camera.videoView.frame = self.videoContainer.bounds;
-        [self.camera startPreview];
+    __weak typeof(self) weakSelf = self;
+    if ([self isDoorbell]) {
+        [self.camera.dpManager valueForDP:TuyaSmartCameraWirelessAwakeDPName success:^(id result) {
+            if ([result boolValue]) {
+                if (weakSelf.camera.isConnected) {
+                    [weakSelf.camera.videoView tuya_clear];
+                    [weakSelf.videoContainer addSubview:weakSelf.camera.videoView];
+                    weakSelf.camera.videoView.frame = weakSelf.videoContainer.bounds;
+                    [weakSelf.camera startPreview];
+                }else {
+                    [weakSelf.camera connect];
+                }
+            }else {
+                [weakSelf.camera.device awakeDeviceWithSuccess:nil failure:nil];
+            }
+        } failure:nil];
     }else {
-        [self.camera connect];
+        if (self.camera.isConnected) {
+            [self.camera.videoView tuya_clear];
+            [self.videoContainer addSubview:self.camera.videoView];
+            self.camera.videoView.frame = self.videoContainer.bounds;
+            [self.camera startPreview];
+        }else {
+            [self.camera connect];
+        }
     }
     [self showLoadingWithTitle:@"loading..."];
     self.retryButton.hidden = YES;
+}
+
+- (BOOL)isDoorbell {
+    return [self.camera.dpManager isSurpportDP:TuyaSmartCameraWirelessAwakeDPName];
 }
 
 - (void)soundAction {

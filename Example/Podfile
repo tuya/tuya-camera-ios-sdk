@@ -2,15 +2,15 @@
 target 'TuyaSmartCamera_Example' do
   pod 'TuyaSmartCamera/ALL'
   pod 'TuyaSmartHomeKit'
-  pod 'TuyaSmartUtil', '0.2.2'
-  pod 'TuyaSmartBaseKit', '0.2.2'
-  pod 'TuyaSmartDeviceKit', '0.2.2'
-  pod 'TuyaSmartBLEKit', '0.2.2'
-  pod 'TuyaSmartBLEMeshKit', '0.2.2'
-  pod 'TuyaSmartSceneKit', '0.2.2'
-  pod 'TuyaSmartTimerKit', '0.2.2'
-  pod 'TuyaSmartMessageKit', '0.2.2'
-  pod 'TuyaSmartFeedbackKit', '0.2.2'
+#  pod 'TuyaSmartUtil', '0.2.2'
+#  pod 'TuyaSmartBaseKit', '0.2.2'
+#  pod 'TuyaSmartDeviceKit', '0.2.2'
+#  pod 'TuyaSmartBLEKit', '0.2.2'
+#  pod 'TuyaSmartBLEMeshKit', '0.2.2'
+#  pod 'TuyaSmartSceneKit', '0.2.2'
+#  pod 'TuyaSmartTimerKit', '0.2.2'
+#  pod 'TuyaSmartMessageKit', '0.2.2'
+#  pod 'TuyaSmartFeedbackKit', '0.2.2'
 
   target 'TuyaSmartCamera_Tests' do
     inherit! :search_paths
