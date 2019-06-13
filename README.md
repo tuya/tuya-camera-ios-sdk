@@ -20,17 +20,20 @@ Tuya Smart Camera SDK provides the interface package for the communication with 
 Add the following line to your Podfile:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'your_target_name' do
 
-pod 'TuyaSmartCamera/ALL'
+pod 'TuyaSmartCameraKit'
+#pod 'TuyaSmartCameraT'
 pod 'TuyaSmartHomeKit'
 
 end
 ```
 
-if you just want integrate p2p 2.0 camera, you could use ```pod 'TuyaSmartCamera'```.
+TuyaSmartCameraKit just support p2p 2.0,  if you want integrate p2p 1.0 camera, you could add this code: ```pod 'TuyaSmartCameraT'```.
+
+```TuyaSmartCameraDefault``` is removed from sdk, you can get it from demo in this repo.
 
 Execute command ```pod update```in the project's root directory to begin integration.
 
