@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TuyaSmartCamera/TuyaSmartCameraDPManager.h>
+#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 
 @interface TuyaSmartSDCardViewController : UITableViewController
 

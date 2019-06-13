@@ -28,7 +28,7 @@
 
 @property (nonatomic, strong) TuyaSmartCameraNightvision nightvisionState;
 
-@property (nonatomic, strong) TuyaSmartCaemraPIR pirState;
+@property (nonatomic, strong) TuyaSmartCameraPIR pirState;
 
 @property (nonatomic, assign) BOOL motionDetectOn;
 
@@ -67,7 +67,7 @@
 - (void)getDeviceInfo {
     WEAKSELF_AT
     dispatch_group_t group = dispatch_group_create();
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicIndicatorDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicIndicatorDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicIndicatorDPName success:^(id result) {
             weakSelf_AT.indicatorOn = [result boolValue];
@@ -76,7 +76,7 @@
             dispatch_group_leave(group);
         }];
     }
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicFlipDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicFlipDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicFlipDPName success:^(id result) {
             weakSelf_AT.flipOn = [result boolValue];
@@ -86,7 +86,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicOSDDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicOSDDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicOSDDPName success:^(id result) {
             weakSelf_AT.osdOn = [result boolValue];
@@ -96,7 +96,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicPrivateDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPrivateDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicPrivateDPName success:^(id result) {
             weakSelf_AT.privateOn = [result boolValue];
@@ -106,7 +106,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicNightvisionDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicNightvisionDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicNightvisionDPName success:^(id result) {
             weakSelf_AT.nightvisionState = result;
@@ -116,7 +116,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicPIRDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPIRDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraBasicPIRDPName success:^(id result) {
             weakSelf_AT.pirState = result;
@@ -126,7 +126,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraMotionDetectDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraMotionDetectDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraMotionDetectDPName success:^(id result) {
             weakSelf_AT.motionDetectOn = [result boolValue];
@@ -136,7 +136,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraMotionSensitivityDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraMotionSensitivityDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraMotionSensitivityDPName success:^(id result) {
             weakSelf_AT.motionSensitivity = result;
@@ -146,7 +146,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraDecibelDetectDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelDetectDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraDecibelDetectDPName success:^(id result) {
             weakSelf_AT.decibelDetectOn = [result boolValue];
@@ -156,7 +156,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraDecibelSensitivityDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelSensitivityDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraDecibelSensitivityDPName success:^(id result) {
             weakSelf_AT.decibelSensitivity = result;
@@ -166,7 +166,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraSDCardStatusDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardStatusDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraSDCardStatusDPName success:^(id result) {
             weakSelf_AT.sdCardStatus = [result integerValue];
@@ -176,7 +176,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraSDCardRecordDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardRecordDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraSDCardRecordDPName success:^(id result) {
             weakSelf_AT.sdRecordOn = [result boolValue];
@@ -186,7 +186,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraRecordModeDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraRecordModeDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraRecordModeDPName success:^(id result) {
             weakSelf_AT.recordMode = result;
@@ -196,7 +196,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessBatteryLockDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessBatteryLockDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraWirelessBatteryLockDPName success:^(id result) {
             weakSelf_AT.batteryLockOn = [result boolValue];
@@ -206,7 +206,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessPowerModeDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessPowerModeDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraWirelessPowerModeDPName success:^(id result) {
             weakSelf_AT.powerMode = result;
@@ -216,7 +216,7 @@
         }];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessElectricityDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessElectricityDPName]) {
         dispatch_group_enter(group);
         [self.dpManager valueForDP:TuyaSmartCameraWirelessElectricityDPName success:^(id result) {
             weakSelf_AT.electricity = [result integerValue];
@@ -231,27 +231,27 @@
 - (void)reloadData {
     NSMutableArray *dataSource = [NSMutableArray new];
     NSMutableArray *section0 = [NSMutableArray new];
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicIndicatorDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicIndicatorDPName]) {
         [section0 addObject:@{kTitle:@"指示灯", kValue: @(self.indicatorOn), kAction: @"indicatorAction:", kSwitch: @"1"}];
     }
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicFlipDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicFlipDPName]) {
         [section0 addObject:@{kTitle: @"画面翻转", kValue: @(self.flipOn), kAction: @"flipAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicOSDDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicOSDDPName]) {
         [section0 addObject:@{kTitle: @"时间水印", kValue: @(self.osdOn), kAction: @"osdAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicPrivateDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPrivateDPName]) {
         [section0 addObject:@{kTitle: @"隐私模式", kValue: @(self.privateOn), kAction: @"privateAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicNightvisionDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicNightvisionDPName]) {
         NSString *text = [self nightvisionText:self.nightvisionState];
         [section0 addObject:@{kTitle: @"红外夜视", kValue: text, kAction: @"nightvisionAction", kArrow: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraBasicPIRDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPIRDPName]) {
         NSString *text = [self pirText:self.pirState];
         [section0 addObject:@{kTitle: @"PIR", kValue: text, kAction: @"pirAction", kArrow: @"1"}];
     }
@@ -261,11 +261,11 @@
     }
     
     NSMutableArray *section1 = [NSMutableArray new];
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraMotionDetectDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraMotionDetectDPName]) {
         [section1 addObject:@{kTitle: @"移动侦测", kValue: @(self.motionDetectOn), kAction: @"motionDetectAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraMotionSensitivityDPName] && self.motionDetectOn) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraMotionSensitivityDPName] && self.motionDetectOn) {
         NSString *text = [self motionSensitivityText:self.motionSensitivity];
         [section1 addObject:@{kTitle: @"移动侦测灵敏度", kValue: text, kAction: @"motionSensitivityAction", kArrow: @"1"}];
     }
@@ -274,11 +274,11 @@
     }
     
     NSMutableArray *section2 = [NSMutableArray new];
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraDecibelDetectDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelDetectDPName]) {
         [section2 addObject:@{kTitle: @"声音侦测", kValue: @(self.decibelDetectOn), kAction: @"decibelDetectAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraDecibelSensitivityDPName] && self.decibelDetectOn) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelSensitivityDPName] && self.decibelDetectOn) {
         NSString *text = [self decibelSensitivityText:self.decibelSensitivity];
         [section2 addObject:@{kTitle: @"声音侦测灵敏度", kValue: text, kAction: @"decibelSensitivityAction", kArrow: @"1"}];
     }
@@ -287,16 +287,16 @@
     }
     
     NSMutableArray *section3 = [NSMutableArray new];
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraSDCardStatusDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardStatusDPName]) {
         NSString *text = [self sdCardStatusText:self.sdCardStatus];
         [section3 addObject:@{kTitle: @"储存卡", kValue: text, kAction: @"sdCardAction", kArrow: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraSDCardRecordDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardRecordDPName]) {
         [section3 addObject:@{kTitle: @"本地录像", kValue: @(self.sdRecordOn), kAction: @"sdRecordAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraRecordModeDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraRecordModeDPName]) {
         NSString *text = [self recordModeText:self.recordMode];
         [section3 addObject:@{kTitle: @"录像模式", kValue: text, kAction: @"recordModeAction", kArrow: @"1"}];
     }
@@ -305,16 +305,16 @@
     }
     
     NSMutableArray *section4 = [NSMutableArray new];
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessBatteryLockDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessBatteryLockDPName]) {
         [section4 addObject:@{kTitle: @"电池锁", kValue: @(self.batteryLockOn), kAction: @"batteryLockAction:", kSwitch: @"1"}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessPowerModeDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessPowerModeDPName]) {
         NSString *text = [self powerModeText:self.powerMode];
         [section4 addObject:@{kTitle: @"供电方式", kValue: text}];
     }
     
-    if ([self.dpManager isSurpportDP:TuyaSmartCameraWirelessElectricityDPName]) {
+    if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessElectricityDPName]) {
         NSString *text = [self electricityText];
         [section4 addObject:@{kTitle: @"电量", kValue: text}];
     }
@@ -503,7 +503,7 @@
     return @"关";
 }
 
-- (NSString *)pirText:(TuyaSmartCaemraPIR)state {
+- (NSString *)pirText:(TuyaSmartCameraPIR)state {
     if ([state isEqualToString:TuyaSmartCameraPIRStateLow]) {
         return @"低灵敏度";
     }

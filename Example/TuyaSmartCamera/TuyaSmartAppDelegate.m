@@ -7,7 +7,6 @@
 //
 
 #import "TuyaSmartAppDelegate.h"
-#import <TuyaSmartCamera/TuyaSmartCameraFactory.h>
 #import <TuyaSmartHomeKit/TuyaSmartKit.h>
 #import "TuyaSmartDeviceTableViewController.h"
 
