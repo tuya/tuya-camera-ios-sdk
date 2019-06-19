@@ -89,6 +89,7 @@
     }
     TuyaSmartDeviceModel *deviceModel = [self.dataSource objectAtIndex:indexPath.row];
     cell.textLabel.text = deviceModel.name;
+    cell.detailTextLabel.text = deviceModel.isOnline ? @"online" : @"offline";
     return cell;
 }
 

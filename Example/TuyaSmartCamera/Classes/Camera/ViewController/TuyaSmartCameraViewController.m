@@ -133,25 +133,26 @@
 
 - (void)retryAction {
     [self.controlView disableAllControl];
-    __weak typeof(self) weakSelf = self;
+    if (!self.camera.device.deviceModel.isOnline) {
+        self.stateLabel.hidden = NO;
+        self.stateLabel.text = @"device is offline";
+        return;
+    }
     if ([self isDoorbell]) {
-        [self.camera.dpManager valueForDP:TuyaSmartCameraWirelessAwakeDPName success:^(id result) {
-            if ([result boolValue]) {
-                if (weakSelf.camera.isConnected) {
-                    [weakSelf.camera.videoView tuya_clear];
-                    [weakSelf.videoContainer addSubview:weakSelf.camera.videoView];
-                    weakSelf.camera.videoView.frame = weakSelf.videoContainer.bounds;
-                    [weakSelf.camera startPreview];
-                }else {
-                    [weakSelf.camera connect];
-                }
+        BOOL isAwaking = [[self.camera.dpManager valueForDP:TuyaSmartCameraWirelessAwakeDPName] boolValue];
+        if (isAwaking) {
+            if (self.camera.isConnected) {
+                [self.videoContainer addSubview:self.camera.videoView];
+                self.camera.videoView.frame = self.videoContainer.bounds;
+                [self.camera startPreview];
             }else {
-                [weakSelf.camera.device awakeDeviceWithSuccess:nil failure:nil];
+                [self.camera connect];
             }
-        } failure:nil];
+        }else {
+            [self.camera.device awakeDeviceWithSuccess:nil failure:nil];
+        }
     }else {
         if (self.camera.isConnected) {
-            [self.camera.videoView tuya_clear];
             [self.videoContainer addSubview:self.camera.videoView];
             self.camera.videoView.frame = self.videoContainer.bounds;
             [self.camera startPreview];
@@ -164,7 +165,7 @@
 }
 
 - (BOOL)isDoorbell {
-    return [self.camera.dpManager isSurpportDP:TuyaSmartCameraWirelessAwakeDPName];
+    return [self.camera.dpManager isSupportDP:TuyaSmartCameraWirelessAwakeDPName];
 }
 
 - (void)soundAction {
@@ -213,7 +214,6 @@
 #pragma mark - TuyaSmartCameraObserver
 
 - (void)cameraDidConnected:(TuyaSmartCameraDefault *)camera {
-    [self.camera.videoView tuya_clear];
     [self.videoContainer addSubview:self.camera.videoView];
     self.camera.videoView.frame = self.videoContainer.bounds;
     [self.camera startPreview];

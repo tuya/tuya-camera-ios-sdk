@@ -7,7 +7,7 @@
 //
 
 #import "TuyaSmartAppDelegate.h"
-#import <TuyaSmartHomeKit/TuyaSmartKit.h>
+#import <TuyaSmartBaseKit/TuyaSmartBaseKit.h>
 #import "TuyaSmartDeviceTableViewController.h"
 
 @implementation TuyaSmartAppDelegate
