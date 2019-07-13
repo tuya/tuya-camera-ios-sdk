@@ -1,12 +1,19 @@
 
-target 'TuyaSmartCamera_Example' do
-  pod 'TuyaSmartCameraKit'
-  pod 'TuyaSmartCameraT'
-  pod 'TuyaSmartHomeKit'
+platform :ios, '9.0'
 
-  target 'TuyaSmartCamera_Tests' do
+target 'TuyaSmartHomeKit_Example' do
+
+  pod 'TuyaSmartHomeKit'
+  pod 'TuyaSmartCameraKit'
+  
+  pod 'MBProgressHUD', '~> 0.9.2'
+  pod 'BlocksKit'
+  pod 'SDWebImage'
+  pod 'Reachability'
+  pod 'Masonry'
+
+  target 'TuyaSmartHomeKit_Tests' do
     inherit! :search_paths
 
-    
   end
 end
