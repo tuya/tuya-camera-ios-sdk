@@ -1,59 +1,45 @@
-# Tuya Smart iOS SDK
+# TuyaSmartCamera
 
-[中文版](README-zh.md) | [English](README.md)
+[中文版](./README-zh.md) | [English](./README.md)
 
 ---
 
 ## Features Overview
 
-Tuya Smart APP SDK provides the interface package for the communication with hardware and Tuya Cloud to accelerate the application development process, including the following features:
+Tuya Smart Camera SDK provides the interface package for the communication with remote camera device to accelerate the application development process, including the following features:
 
-- Hardware functions (network configuration, control, status reporting, regular tasks, groups, firmware upgrades, sharing)
-- Account system (phone number, email registration, login, password reset and other general account functions)
-- Tuya Cloud HTTP API interface package
+* Preview the picture taken by the camera
+* Play back recorded video of the remote camera
+* Record video
+* Talk to the remote camera
 
 ## Rapid Integration
 
-### Using CocoaPods integration (version 8.0 or above is supported)
+#### Using CocoaPods integration（version 8.0 or above is supported）
 
-Add the following content in file `Podfile`:
+Add the following line to your Podfile:
 
 ```ruby
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'your_target_name' do
 
-      pod "TuyaSmartHomeKit"
+pod 'TuyaSmartCameraKit'
+#pod 'TuyaSmartCameraT'
+pod 'TuyaSmartHomeKit'
 
 end
 ```
 
-Execute command `pod update` in the project's root directory to begin integration.
+TuyaSmartCameraKit just support p2p 2.0,  if you want integrate p2p 1.0 camera, you could add this code: ```pod 'TuyaSmartCameraT'```.
 
-For the instructions of CocoaPods, please refer to: [CocoaPods Guides](https://guides.cocoapods.org/)
+```TuyaSmartCameraDefault``` is removed from sdk, you can get it from demo in this repo.
 
-## Initializing SDK
+Execute command ```pod update```in the project's root directory to begin integration.
 
-Add the following to the project file `PrefixHeader.pch`：
-
-```objc
-#import <TuyaSmartHomeKit/TuyaSmartKit.h>
-```
-
-Open file `AppDelegate.m`，and use the `App ID` and `App Secret` obtained from the development platform in the `[AppDelegate application:didFinishLaunchingWithOptions:]`method to initialize SDK:
-
-```objc
-[[TuyaSmartSDK sharedInstance] startWithAppKey:<#your_app_key#> secretKey:<#your_secret_key#>];
-```
-
-Now all the preparatory work has been completed. You can set out to develop your application.
+For the instructions of CocoaPods, please refer to : [CocoaPods Guides](https://guides.cocoapods.org/)
 
 ## Doc
 
-Refer to details: [Tuya Smart Doc - iOS SDK](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/)
-
-## ChangeLog
-
-[CHANGELOG.md](./CHANGELOG.md)
-
+Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/)
 
