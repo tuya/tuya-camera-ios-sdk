@@ -11,8 +11,8 @@
 #import "TYPermissionUtil.h"
 #import "TuyaSmartCameraPlaybackViewController.h"
 #import "TuyaSmartCameraSettingViewController.h"
-#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 #import "TuyaSmartCamera.h"
+#import "TYCameraCloudViewController.h"
 
 #define TopBarHeight 88
 #define VideoViewWidth [UIScreen mainScreen].bounds.size.width
@@ -22,6 +22,7 @@
 #define kControlRecord      @"record"
 #define kControlPhoto       @"photo"
 #define kControlPlayback    @"playback"
+#define kControlCloud       @"Cloud"
 
 @interface TuyaSmartCameraViewController ()<TuyaSmartCameraObserver, TuyaSmartCameraControlViewDelegate, TuyaSmartCameraDPObserver>
 
@@ -345,6 +346,11 @@
         [self.navigationController pushViewController:vc animated:YES];
         return;
     }
+    if ([identifier isEqualToString:kControlCloud]) {
+        TYCameraCloudViewController *vc = [TYCameraCloudViewController new];
+        vc.devId = self.devId;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     BOOL needPhotoPermission = [identifier isEqualToString:kControlPhoto] || [identifier isEqualToString:kControlRecord];
     if (needPhotoPermission) {
         if ([TYPermissionUtil isPhotoLibraryNotDetermined]) {
@@ -402,6 +408,11 @@
                  @"image": @"ty_camera_playback_icon",
                  @"title": @"playback",
                  @"identifier": kControlPlayback
+                 },
+             @{
+                 @"image": @"ty_camera_cloud_icon",
+                 @"title": @"cloud",
+                 @"identifier": kControlCloud
                  }
              ];
 }

@@ -11,7 +11,6 @@
 #import "TYPermissionUtil.h"
 #import "TYCameraCalendarView.h"
 #import "TYCameraRecordListView.h"
-#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 #import "TuyaSmartCamera.h"
 
 #define TopBarHeight 88
@@ -339,21 +338,6 @@ TYCameraRecordListViewDelegate>
         _videoContainer.backgroundColor = [UIColor blackColor];
     }
     return _videoContainer;
-}
-
-- (NSArray *)controlDatas {
-    return @[
-             @{
-                 @"image": @"ty_camera_rec_icon",
-                 @"title": @"record",
-                 @"identifier": kControlRecord
-                 },
-             @{
-                 @"image": @"ty_camera_photo_icon",
-                 @"title": @"photo",
-                 @"identifier": kControlPhoto
-                 },
-             ];
 }
 
 - (UIButton *)soundButton {

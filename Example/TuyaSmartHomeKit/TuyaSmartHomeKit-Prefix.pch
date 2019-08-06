@@ -23,6 +23,8 @@
 #import "TPBaseViewController.h"
 #import "TYTheme.h"
 
+#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 #import <TuyaSmartHomeKit/TuyaSmartKit.h>
+#import <TYCameraCloudServicePanelSDK/TYCameraCloudServicePanelSDK.h>
 
 #endif

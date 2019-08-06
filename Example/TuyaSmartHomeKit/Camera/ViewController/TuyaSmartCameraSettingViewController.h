@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 
 @interface TuyaSmartCameraSettingViewController : TPBaseViewController
 

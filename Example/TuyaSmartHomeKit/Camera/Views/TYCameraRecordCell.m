@@ -7,7 +7,6 @@
 //
 
 #import "TYCameraRecordCell.h"
-#import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 
 @implementation TYCameraRecordCell
 

@@ -32,6 +32,7 @@
     
     // TODO: Input your appKey and secretKey
     [[TuyaSmartSDK sharedInstance] startWithAppKey:<#Your AppKey#> secretKey:<#Your AppSecret#>];
+    [TYCameraCloudServicePanelSDK setupWithAppScheme:<#Your Scheme#>];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     

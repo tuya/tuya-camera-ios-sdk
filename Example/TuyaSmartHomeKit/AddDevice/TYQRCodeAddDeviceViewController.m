@@ -155,7 +155,7 @@ static NSInteger _timeout = _timeLeft;
                            @"p": pswd,
                            @"t": token
                            };
-    self.qrCodeView.image = [TYAddDeviceUtils qrCodeWithString:[info ty_JSONString] width:self.view.frame.size.width - 44];
+    self.qrCodeView.image = [TYAddDeviceUtils qrCodeWithString:[info tysdk_JSONString] width:self.view.frame.size.width - 44];
     self.qrCodeView.hidden = NO;
     self.startButton.hidden = NO;
 }

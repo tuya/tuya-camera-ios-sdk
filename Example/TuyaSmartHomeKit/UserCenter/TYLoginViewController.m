@@ -68,7 +68,7 @@
 - (void)loadHomeData {
     
     if (![TuyaSmartUser sharedInstance].isLogin) return;
-    
+    [TYCameraCloudServicePanelSDK userStateChanged];
     WEAKSELF_AT
     [self.homeManager getHomeListWithSuccess:^(NSArray<TuyaSmartHomeModel *> *homes) {
         

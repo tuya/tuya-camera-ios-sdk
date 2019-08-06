@@ -95,52 +95,52 @@
 
 - (void)getDeviceInfo {
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicIndicatorDPName]) {
-        self.indicatorOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicIndicatorDPName] ty_toBool];
+        self.indicatorOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicIndicatorDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicFlipDPName]) {
-        self.flipOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicFlipDPName] ty_toBool];
+        self.flipOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicFlipDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicOSDDPName]) {
-        self.osdOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicOSDDPName] ty_toBool];
+        self.osdOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicOSDDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPrivateDPName]) {
-        self.privateOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicPrivateDPName] ty_toBool];
+        self.privateOn = [[self.dpManager valueForDP:TuyaSmartCameraBasicPrivateDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicNightvisionDPName]) {
-        self.nightvisionState = [[self.dpManager valueForDP:TuyaSmartCameraBasicNightvisionDPName] ty_toString];
+        self.nightvisionState = [[self.dpManager valueForDP:TuyaSmartCameraBasicNightvisionDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraBasicPIRDPName]) {
-        self.pirState = [[self.dpManager valueForDP:TuyaSmartCameraBasicPIRDPName] ty_toString];
+        self.pirState = [[self.dpManager valueForDP:TuyaSmartCameraBasicPIRDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraMotionDetectDPName]) {
-        self.motionDetectOn = [[self.dpManager valueForDP:TuyaSmartCameraMotionDetectDPName] ty_toBool];
+        self.motionDetectOn = [[self.dpManager valueForDP:TuyaSmartCameraMotionDetectDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraMotionSensitivityDPName]) {
-        self.motionSensitivity = [[self.dpManager valueForDP:TuyaSmartCameraMotionSensitivityDPName] ty_toString];
+        self.motionSensitivity = [[self.dpManager valueForDP:TuyaSmartCameraMotionSensitivityDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelDetectDPName]) {
-        self.decibelDetectOn = [[self.dpManager valueForDP:TuyaSmartCameraDecibelDetectDPName] ty_toBool];
+        self.decibelDetectOn = [[self.dpManager valueForDP:TuyaSmartCameraDecibelDetectDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraDecibelSensitivityDPName]) {
-        self.decibelSensitivity = [[self.dpManager valueForDP:TuyaSmartCameraDecibelSensitivityDPName] ty_toString];
+        self.decibelSensitivity = [[self.dpManager valueForDP:TuyaSmartCameraDecibelSensitivityDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardStatusDPName]) {
-        self.sdCardStatus = [[self.dpManager valueForDP:TuyaSmartCameraSDCardStatusDPName] ty_toInt];
+        self.sdCardStatus = [[self.dpManager valueForDP:TuyaSmartCameraSDCardStatusDPName] tysdk_toInt];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraSDCardRecordDPName]) {
-        self.sdRecordOn = [[self.dpManager valueForDP:TuyaSmartCameraSDCardRecordDPName] ty_toBool];
+        self.sdRecordOn = [[self.dpManager valueForDP:TuyaSmartCameraSDCardRecordDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraRecordModeDPName]) {
-        self.recordMode = [[self.dpManager valueForDP:TuyaSmartCameraRecordModeDPName] ty_toString];
+        self.recordMode = [[self.dpManager valueForDP:TuyaSmartCameraRecordModeDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessBatteryLockDPName]) {
-        self.batteryLockOn = [[self.dpManager valueForDP:TuyaSmartCameraWirelessBatteryLockDPName] ty_toBool];
+        self.batteryLockOn = [[self.dpManager valueForDP:TuyaSmartCameraWirelessBatteryLockDPName] tysdk_toBool];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessPowerModeDPName]) {
-        self.powerMode = [[self.dpManager valueForDP:TuyaSmartCameraWirelessPowerModeDPName] ty_toString];
+        self.powerMode = [[self.dpManager valueForDP:TuyaSmartCameraWirelessPowerModeDPName] tysdk_toString];
     }
     if ([self.dpManager isSupportDP:TuyaSmartCameraWirelessElectricityDPName]) {
-        self.electricity = [[self.dpManager valueForDP:TuyaSmartCameraWirelessElectricityDPName] ty_toInt];
+        self.electricity = [[self.dpManager valueForDP:TuyaSmartCameraWirelessElectricityDPName] tysdk_toInt];
     }
     [self reloadData];
 }
