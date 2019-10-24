@@ -139,6 +139,17 @@
 		7705784B22F9224900368C3F /* ty_camera_tool_pause_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7705784722F9224800368C3F /* ty_camera_tool_pause_normal@3x.png */; };
 		7705784C22F9224900368C3F /* ty_camera_tool_pause_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7705784822F9224800368C3F /* ty_camera_tool_pause_normal@2x.png */; };
 		7705784F22F954A400368C3F /* TYCloudDayCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705784E22F954A400368C3F /* TYCloudDayCollectionViewCell.m */; };
+		77410D7B2330B5CC00A099EB /* ty_camera_soundOff_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D732330B5CB00A099EB /* ty_camera_soundOff_icon@3x.png */; };
+		77410D7C2330B5CC00A099EB /* ty_camera_soundOn_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D742330B5CB00A099EB /* ty_camera_soundOn_icon@2x.png */; };
+		77410D7D2330B5CC00A099EB /* ty_camera_soundOn_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D752330B5CB00A099EB /* ty_camera_soundOn_icon@3x.png */; };
+		77410D7E2330B5CC00A099EB /* ty_camera_soundOff_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D762330B5CB00A099EB /* ty_camera_soundOff_icon@2x.png */; };
+		77410D7F2330B5CC00A099EB /* ty_camera_control_sd_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D772330B5CB00A099EB /* ty_camera_control_sd_normal@2x.png */; };
+		77410D802330B5CC00A099EB /* ty_camera_control_sd_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D782330B5CC00A099EB /* ty_camera_control_sd_normal@3x.png */; };
+		77410D812330B5CC00A099EB /* ty_camera_control_hd_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D792330B5CC00A099EB /* ty_camera_control_hd_normal@2x.png */; };
+		77410D822330B5CC00A099EB /* ty_camera_control_hd_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D7A2330B5CC00A099EB /* ty_camera_control_hd_normal@3x.png */; };
+		77410D852330B77500A099EB /* ty_camera_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D832330B77400A099EB /* ty_camera_message@2x.png */; };
+		77410D862330B77600A099EB /* ty_camera_message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77410D842330B77500A099EB /* ty_camera_message@3x.png */; };
+		77410D892330B83A00A099EB /* TYCameraMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77410D882330B83A00A099EB /* TYCameraMessageViewController.m */; };
 		7799061722D9851200EEC370 /* TuyaSmartCameraSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779905F922D9851200EEC370 /* TuyaSmartCameraSettingViewController.m */; };
 		7799061822D9851200EEC370 /* TuyaSmartSDCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779905FA22D9851200EEC370 /* TuyaSmartSDCardViewController.m */; };
 		7799061922D9851200EEC370 /* TuyaSmartCameraPlaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799060022D9851200EEC370 /* TuyaSmartCameraPlaybackViewController.m */; };
@@ -362,6 +373,18 @@
 		7705784822F9224800368C3F /* ty_camera_tool_pause_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_tool_pause_normal@2x.png"; sourceTree = "<group>"; };
 		7705784D22F954A400368C3F /* TYCloudDayCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYCloudDayCollectionViewCell.h; sourceTree = "<group>"; };
 		7705784E22F954A400368C3F /* TYCloudDayCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TYCloudDayCollectionViewCell.m; sourceTree = "<group>"; };
+		77410D732330B5CB00A099EB /* ty_camera_soundOff_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_soundOff_icon@3x.png"; sourceTree = "<group>"; };
+		77410D742330B5CB00A099EB /* ty_camera_soundOn_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_soundOn_icon@2x.png"; sourceTree = "<group>"; };
+		77410D752330B5CB00A099EB /* ty_camera_soundOn_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_soundOn_icon@3x.png"; sourceTree = "<group>"; };
+		77410D762330B5CB00A099EB /* ty_camera_soundOff_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_soundOff_icon@2x.png"; sourceTree = "<group>"; };
+		77410D772330B5CB00A099EB /* ty_camera_control_sd_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_control_sd_normal@2x.png"; sourceTree = "<group>"; };
+		77410D782330B5CC00A099EB /* ty_camera_control_sd_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_control_sd_normal@3x.png"; sourceTree = "<group>"; };
+		77410D792330B5CC00A099EB /* ty_camera_control_hd_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_control_hd_normal@2x.png"; sourceTree = "<group>"; };
+		77410D7A2330B5CC00A099EB /* ty_camera_control_hd_normal@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_control_hd_normal@3x.png"; sourceTree = "<group>"; };
+		77410D832330B77400A099EB /* ty_camera_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_message@2x.png"; sourceTree = "<group>"; };
+		77410D842330B77500A099EB /* ty_camera_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ty_camera_message@3x.png"; sourceTree = "<group>"; };
+		77410D872330B83A00A099EB /* TYCameraMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TYCameraMessageViewController.h; sourceTree = "<group>"; };
+		77410D882330B83A00A099EB /* TYCameraMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TYCameraMessageViewController.m; sourceTree = "<group>"; };
 		779905F922D9851200EEC370 /* TuyaSmartCameraSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraSettingViewController.m; sourceTree = "<group>"; };
 		779905FA22D9851200EEC370 /* TuyaSmartSDCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartSDCardViewController.m; sourceTree = "<group>"; };
 		779905FB22D9851200EEC370 /* TYQRCodeAddDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYQRCodeAddDeviceViewController.h; sourceTree = "<group>"; };
@@ -792,6 +815,16 @@
 		7705782D22F858E300368C3F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				77410D832330B77400A099EB /* ty_camera_message@2x.png */,
+				77410D842330B77500A099EB /* ty_camera_message@3x.png */,
+				77410D792330B5CC00A099EB /* ty_camera_control_hd_normal@2x.png */,
+				77410D7A2330B5CC00A099EB /* ty_camera_control_hd_normal@3x.png */,
+				77410D772330B5CB00A099EB /* ty_camera_control_sd_normal@2x.png */,
+				77410D782330B5CC00A099EB /* ty_camera_control_sd_normal@3x.png */,
+				77410D762330B5CB00A099EB /* ty_camera_soundOff_icon@2x.png */,
+				77410D732330B5CB00A099EB /* ty_camera_soundOff_icon@3x.png */,
+				77410D742330B5CB00A099EB /* ty_camera_soundOn_icon@2x.png */,
+				77410D752330B5CB00A099EB /* ty_camera_soundOn_icon@3x.png */,
 				7705784822F9224800368C3F /* ty_camera_tool_pause_normal@2x.png */,
 				7705784722F9224800368C3F /* ty_camera_tool_pause_normal@3x.png */,
 				7705784622F9224800368C3F /* ty_camera_tool_play_normal@2x.png */,
@@ -836,6 +869,8 @@
 				779905FA22D9851200EEC370 /* TuyaSmartSDCardViewController.m */,
 				7705784222F85B6B00368C3F /* TYCameraCloudViewController.h */,
 				7705784322F85B6B00368C3F /* TYCameraCloudViewController.m */,
+				77410D872330B83A00A099EB /* TYCameraMessageViewController.h */,
+				77410D882330B83A00A099EB /* TYCameraMessageViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -883,7 +918,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				8E23A26A006993D06FD80596 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -974,6 +1008,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				7705783E22F85A1100368C3F /* ty_camera_rec_icon@3x.png in Resources */,
 				65FC210920C8D2FE00918C6D /* ty_devicelist_share_gray@2x.png in Resources */,
+				77410D812330B5CC00A099EB /* ty_camera_control_hd_normal@2x.png in Resources */,
 				7705783F22F85A1100368C3F /* ty_camera_photo_icon@3x.png in Resources */,
 				7705783922F85A1100368C3F /* ty_camera_cloud_icon@3x.png in Resources */,
 				6BA0E4FC2211A08F00307E67 /* ty_scene_custom2@3x.png in Resources */,
@@ -984,6 +1019,7 @@
 				65FC21B920C8D2FE00918C6D /* ty_mainbt_add@3x.png in Resources */,
 				6BA0E5032211A08F00307E67 /* ty_scene_selected@2x.png in Resources */,
 				65FC210120C8D2FE00918C6D /* ty_devicelist_share_green@3x.png in Resources */,
+				77410D862330B77600A099EB /* ty_camera_message@3x.png in Resources */,
 				6BA0E4FA2211A08F00307E67 /* ty_scene_error@2x.png in Resources */,
 				6BA0E5042211A08F00307E67 /* ty_scene_add_action@3x.png in Resources */,
 				65FC21BB20C8D2FE00918C6D /* ty_mainbt_about@2x.png in Resources */,
@@ -998,16 +1034,21 @@
 				7705784B22F9224900368C3F /* ty_camera_tool_pause_normal@3x.png in Resources */,
 				65FC21B420C8D2FE00918C6D /* cell_view_arrow@3x.png in Resources */,
 				65FC212420C8D2FE00918C6D /* power_off@2x.png in Resources */,
+				77410D7C2330B5CC00A099EB /* ty_camera_soundOn_icon@2x.png in Resources */,
 				65FC21B320C8D2FE00918C6D /* ty_mainbt_devicelist_active@2x.png in Resources */,
 				6BA0E5092211A08F00307E67 /* ty_index_custom@2x.png in Resources */,
+				77410D7D2330B5CC00A099EB /* ty_camera_soundOn_icon@3x.png in Resources */,
 				7705783C22F85A1100368C3F /* ty_camera_playback_icon@2x.png in Resources */,
 				65FC227F20C9015800918C6D /* Localizable.strings in Resources */,
 				65FC21B620C8D2FE00918C6D /* ty_mainbt_devicelist@3x.png in Resources */,
 				65B6ED9121A9257500EEE134 /* phoneCodeList.plist in Resources */,
 				65FC210220C8D2FE00918C6D /* ty_devicelist_dot_gray@3x.png in Resources */,
 				6BA0E4FF2211A08F00307E67 /* ty_index_scene_close@2x.png in Resources */,
+				77410D7F2330B5CC00A099EB /* ty_camera_control_sd_normal@2x.png in Resources */,
+				77410D802330B5CC00A099EB /* ty_camera_control_sd_normal@3x.png in Resources */,
 				65FC212520C8D2FE00918C6D /* ty_panel_plus@3x.png in Resources */,
 				6BA0E4FB2211A08F00307E67 /* ty_scene_switch@2x.png in Resources */,
+				77410D852330B77500A099EB /* ty_camera_message@2x.png in Resources */,
 				7705784C22F9224900368C3F /* ty_camera_tool_pause_normal@2x.png in Resources */,
 				65FC211D20C8D2FE00918C6D /* ty_panel_arrows@3x.png in Resources */,
 				65FC212120C8D2FE00918C6D /* power_on@3x.png in Resources */,
@@ -1015,7 +1056,9 @@
 				7705783B22F85A1100368C3F /* ty_camera_cloud_icon@2x.png in Resources */,
 				6BA0E5052211A08F00307E67 /* ty_add@2x.png in Resources */,
 				65FC21B120C8D2FE00918C6D /* ty_mainbt_add_active@2x.png in Resources */,
+				77410D7E2330B5CC00A099EB /* ty_camera_soundOff_icon@2x.png in Resources */,
 				65FC20FE20C8D2FE00918C6D /* ty_devicelist_share_green@2x.png in Resources */,
+				77410D7B2330B5CC00A099EB /* ty_camera_soundOff_icon@3x.png in Resources */,
 				6BA0E5082211A08F00307E67 /* ty_scene_selected@3x.png in Resources */,
 				7705783A22F85A1100368C3F /* ty_camera_playback_icon@3x.png in Resources */,
 				6BA0E50A2211A08F00307E67 /* ty_index_custom@3x.png in Resources */,
@@ -1033,6 +1076,7 @@
 				6BA0E5022211A08F00307E67 /* ty_scene_gray@3x.png in Resources */,
 				65FC212620C8D2FE00918C6D /* power_off@3x.png in Resources */,
 				7705784122F85A1100368C3F /* ty_camera_photo_icon@2x.png in Resources */,
+				77410D822330B5CC00A099EB /* ty_camera_control_hd_normal@3x.png in Resources */,
 				65FC210020C8D2FE00918C6D /* ty_list_empty@3x.png in Resources */,
 				65FC20FD20C8D2FE00918C6D /* ty_devicelist_dot_gray@2x.png in Resources */,
 				6BA0E4FD2211A08F00307E67 /* ty_index_scene_close@3x.png in Resources */,
@@ -1067,30 +1111,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8E23A26A006993D06FD80596 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-TuyaSmartHomeKit_Example/Pods-TuyaSmartHomeKit_Example-resources.sh",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
-				"${PODS_ROOT}/TYCameraCloudServicePanelSDK/ios/TYHybridContainerSDK.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TYHybridContainerSDK.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TuyaSmartHomeKit_Example/Pods-TuyaSmartHomeKit_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		CF8B0613686D1141CC8496A7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -1116,6 +1136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77410D892330B83A00A099EB /* TYCameraMessageViewController.m in Sources */,
 				6BA0E4F32211A08F00307E67 /* TYActionTableViewCell.m in Sources */,
 				6B8DEE2021B10EDB004C9C78 /* TYLoginAndRegisterView.m in Sources */,
 				65FC224A20C8D31900918C6D /* TYTheme.m in Sources */,
@@ -1312,7 +1333,7 @@
 				INFOPLIST_FILE = "TuyaSmartHomeKit/TuyaSmartHomeKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.TuyaSmartHomeKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuya.smart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1333,7 +1354,7 @@
 				INFOPLIST_FILE = "TuyaSmartHomeKit/TuyaSmartHomeKit-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.TuyaSmartHomeKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tuya.smart;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

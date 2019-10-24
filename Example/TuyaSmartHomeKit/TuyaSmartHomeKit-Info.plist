@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>need use microphone</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>need use photo library</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>need use photo library</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -34,6 +28,12 @@
 	<string></string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The location service is required in order to obtain the current location information of your devices.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>need use microphone</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>need use photo library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>need use photo library</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

@@ -26,6 +26,7 @@
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) TuyaSmartRequest *request;
 @property (nonatomic, strong) TuyaSmartHomeManager *homeManager;
+@property (nonatomic, strong) NSArray *deviceList;
 @end
 
 @implementation TYDeviceListViewController
@@ -161,6 +162,10 @@
 - (void)reloadData {
     [self.refreshControl endRefreshing];
     emptyButton.hidden = [TYSmartHomeManager sharedInstance].currentHome.deviceList.count;
+    NSMutableArray *deviceList = [NSMutableArray new];
+    [deviceList addObjectsFromArray:[TYSmartHomeManager sharedInstance].currentHome.deviceList];
+    [deviceList addObjectsFromArray:[TYSmartHomeManager sharedInstance].currentHome.sharedDeviceList];
+    self.deviceList = deviceList;
     self.tableView.hidden = !emptyButton.hidden;
     [self.tableView reloadData];
 }
@@ -230,7 +235,7 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [TYSmartHomeManager sharedInstance].currentHome.deviceList.count;
+    return self.deviceList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -240,7 +245,7 @@
         cell = [[TYDeviceListViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:NSStringFromClass([TYDeviceListViewCell class])];
     }
     
-    TuyaSmartDeviceModel *deviceModel = [[TYSmartHomeManager sharedInstance].currentHome.deviceList objectAtIndex:indexPath.row];
+    TuyaSmartDeviceModel *deviceModel = [self.deviceList objectAtIndex:indexPath.row];
     [cell setItem:deviceModel];
     
     return cell;
@@ -250,7 +255,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    TuyaSmartDeviceModel *deviceModel = [[TYSmartHomeManager sharedInstance].currentHome.deviceList objectAtIndex:indexPath.row];
+    TuyaSmartDeviceModel *deviceModel = [self.deviceList objectAtIndex:indexPath.row];
     if (([deviceModel.uiType isEqualToString:@"RN"] && [deviceModel.category isEqualToString:@"sp"]) || [deviceModel.uiType isEqualToString:@"NA"]) {
         TuyaSmartCameraViewController *cameraVC = [[TuyaSmartCameraViewController alloc] initWithDeviceId:deviceModel.devId];
         [self.navigationController pushViewController:cameraVC animated:YES];
