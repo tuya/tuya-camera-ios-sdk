@@ -5,16 +5,16 @@ platform :ios, '9.0'
 
 target 'TuyaSmartHomeKit_Example' do
 
-#  pod 'TuyaSmartHomeKit'
+  pod 'TuyaSmartHomeKit'
   pod 'TuyaSmartCameraKit'
 #  pod 'TuyaSmartCameraT'
 #  pod 'TYCameraCloudServicePanelSDK'
   
-#  pod 'MBProgressHUD', '~> 0.9.2'
-#  pod 'BlocksKit'
-#  pod 'SDWebImage'
-#  pod 'Reachability'
-#  pod 'Masonry'
+  pod 'MBProgressHUD', '~> 0.9.2'
+  pod 'BlocksKit'
+  pod 'SDWebImage'
+  pod 'Reachability'
+  pod 'Masonry'
 
   target 'TuyaSmartHomeKit_Tests' do
     inherit! :search_paths
