@@ -236,7 +236,11 @@
     [TYCameraCloudServicePanelSDK cloudServicePanelWithDevice:self.device.deviceModel success:^(UIViewController * _Nonnull vc) {
         self.topBarView.hidden = YES;
         self.navigationController.navigationBar.hidden = NO;
-        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:vc animated:YES];
+        UINavigationController *navi = (UINavigationController *)vc;
+        navi.topViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+        vc.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:vc animated:YES completion:nil];
     } failure:^(NSError * _Nonnull error) {
         [self alertWithMessage:@"加载失败"];
     }];

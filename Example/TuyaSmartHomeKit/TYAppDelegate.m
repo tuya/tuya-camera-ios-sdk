@@ -10,6 +10,7 @@
 #import "TYTabBarViewController.h"
 #import "TPNavigationController.h"
 #import <UserNotifications/UserNotifications.h>
+#import <TuyaSmartLogger/TuyaSmartLogger.h>
 
 /*
  doc link
@@ -33,7 +34,7 @@
     // TODO: Input your appKey and secretKey
     [[TuyaSmartSDK sharedInstance] startWithAppKey:<#Your AppKey#> secretKey:<#Your AppSecret#>];
     [TYCameraCloudServicePanelSDK setupWithAppScheme:<#Your Scheme#>];
-
+    [TuyaSmartLogger startLog];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     TPNavigationController *navigationController = [[TPNavigationController alloc] initWithRootViewController:[TYTabBarViewController new]];

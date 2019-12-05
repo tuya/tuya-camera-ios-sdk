@@ -164,6 +164,7 @@
 		7799062222D9851200EEC370 /* TYCameraCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799060F22D9851200EEC370 /* TYCameraCalendarView.m */; };
 		7799062322D9851200EEC370 /* TuyaSmartCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799061222D9851200EEC370 /* TuyaSmartCamera.m */; };
 		7799062722D9B26300EEC370 /* TYPermissionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799062622D9B26300EEC370 /* TYPermissionUtil.m */; };
+		77FD4C9023994EA70023EA92 /* TuyaSmartCameraService.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD4C8E23994EA60023EA92 /* TuyaSmartCameraService.m */; };
 		84594183223A99450027CD1D /* t_s.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 84594182223A99450027CD1D /* t_s.bmp */; };
 		C5CA651EADE85088C7EBE2CA /* libPods-TuyaSmartHomeKit_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2733C122EBC7512C7B9CF7C9 /* libPods-TuyaSmartHomeKit_Example.a */; };
 /* End PBXBuildFile section */
@@ -413,6 +414,8 @@
 		7799061622D9851200EEC370 /* TuyaSmartCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCamera.h; sourceTree = "<group>"; };
 		7799062522D9B26300EEC370 /* TYPermissionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYPermissionUtil.h; sourceTree = "<group>"; };
 		7799062622D9B26300EEC370 /* TYPermissionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYPermissionUtil.m; sourceTree = "<group>"; };
+		77FD4C8E23994EA60023EA92 /* TuyaSmartCameraService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuyaSmartCameraService.m; sourceTree = "<group>"; };
+		77FD4C8F23994EA70023EA92 /* TuyaSmartCameraService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuyaSmartCameraService.h; sourceTree = "<group>"; };
 		84594182223A99450027CD1D /* t_s.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = t_s.bmp; sourceTree = "<group>"; };
 		CB3ECDD929F9894BDB82DB98 /* libPods-TuyaSmartHomeKit_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuyaSmartHomeKit_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBEEEE4C4AA2F67DCA271369 /* Pods-TuyaSmartHomeKit_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaSmartHomeKit_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-TuyaSmartHomeKit_Example/Pods-TuyaSmartHomeKit_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -848,6 +851,8 @@
 			children = (
 				7799061622D9851200EEC370 /* TuyaSmartCamera.h */,
 				7799061222D9851200EEC370 /* TuyaSmartCamera.m */,
+				77FD4C8F23994EA70023EA92 /* TuyaSmartCameraService.h */,
+				77FD4C8E23994EA60023EA92 /* TuyaSmartCameraService.m */,
 				779905F822D9851200EEC370 /* ViewController */,
 				7799060322D9851200EEC370 /* Views */,
 				7799061322D9851200EEC370 /* Utils */,
@@ -918,6 +923,7 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
+				F3124130B0B226A9680AE073 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1129,6 +1135,32 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F3124130B0B226A9680AE073 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TuyaSmartHomeKit_Example/Pods-TuyaSmartHomeKit_Example-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/TYCameraCloudServicePanelSDK/ios/Resources/TYHybridContainerSDK.bundle",
+				"${PODS_ROOT}/TYCameraCloudServicePanelSDK/ios/Resources/TYNavigationRes.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TYHybridContainerSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TYNavigationRes.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TuyaSmartHomeKit_Example/Pods-TuyaSmartHomeKit_Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1162,6 +1194,7 @@
 				6BA0E4F62211A08F00307E67 /* TYSmartSceneTableViewCell.m in Sources */,
 				7799062122D9851200EEC370 /* TYCameraRecordCell.m in Sources */,
 				65FC21A220C8D2FE00918C6D /* TYTabBarViewController.m in Sources */,
+				77FD4C9023994EA70023EA92 /* TuyaSmartCameraService.m in Sources */,
 				6BA0E4F72211A08F00307E67 /* TYEditSceneTableViewCell.m in Sources */,
 				65B6ED7621A9257500EEE134 /* TPBarButtonItem.m in Sources */,
 				6B8DEE2621B4D49C004C9C78 /* TYAddDeviceUtils.m in Sources */,

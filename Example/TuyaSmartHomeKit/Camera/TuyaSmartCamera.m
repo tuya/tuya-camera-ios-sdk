@@ -8,6 +8,7 @@
 
 #import "TuyaSmartCamera.h"
 #import <TuyaSmartDeviceKit/TuyaSmartDeviceKit.h>
+#import "TuyaSmartCameraService.h"
 
 #define kTuyaSmartIPCConfigAPI @"tuya.m.ipc.config.get"
 #define kTuyaSmartIPCConfigAPIVersion @"2.0"
@@ -320,7 +321,7 @@
 }
 
 - (TuyaSmartCameraTalkbackMode)talkbackMode {
-    return [[TuyaSmartCameraService sharedService] audioModeForCamera:self.devId];
+    return TuyaSmartCameraTalkbackTwoWay;
 }
 
 - (id)jsonSerializationWithJsonStr:(NSString *)jsonStr {
@@ -355,7 +356,6 @@
     id p2pType = [self.device.deviceModel.skills objectForKey:@"p2pType"];
     TuyaSmartRequest *request = [TuyaSmartRequest new];
     [request requestWithApiName:kTuyaSmartIPCConfigAPI postData:@{@"devId": self.devId} version:kTuyaSmartIPCConfigAPIVersion success:^(id result) {
-        [[TuyaSmartCameraService sharedService] putLogWithEvent:@"ipc_config_info" info:result];
         __strong typeof(weakself) self = weakself;
         [self handleVideoNumberWithResult:result];
         [self audioAttributesMap:[result objectForKey:@"audioAttributes"]];
@@ -636,10 +636,6 @@
             [obj camera:self didReceiveVideoFrame:sampleBuffer frameInfo:frameInfo];
         }
     }];
-}
-
-- (void)putLogForEvent:(NSString *)eventName info:(NSDictionary *)info {
-    [[TuyaSmartCameraService sharedService] putLogWithEvent:eventName info:info];
 }
 
 #pragma mark - AudioSession implementations
