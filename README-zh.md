@@ -41,12 +41,8 @@ CocoaPods的使用请参考：[CocoaPods Guides](https://guides.cocoapods.org/)
 
 ## 开发文档
 
----
-
 更多请参考：[涂鸦智能摄像头 iOS SDK使用说明](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/zh-hans/)
 
 ## 版本更新记录
-
----
 
 [版本更新记录](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/zh-hans/resource/version_record.html)

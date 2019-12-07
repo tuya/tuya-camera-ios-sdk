@@ -41,12 +41,8 @@ For the instructions of CocoaPods, please refer to : [CocoaPods Guides](https://
 
 ## Doc
 
----
-
 Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/)
 
 ## ChangeLog
-
----
 
 [ChangeLog](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/resource/version_record.html)
