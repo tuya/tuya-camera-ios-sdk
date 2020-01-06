@@ -361,6 +361,7 @@
         [self audioAttributesMap:[result objectForKey:@"audioAttributes"]];
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             TuyaSmartCameraConfig *config = [TuyaSmartCameraFactory ipcConfigWithUid:[TuyaSmartUser sharedInstance].uid localKey:self.device.deviceModel.localKey configData:result];
+            config.traceId = @"";
             self.camera = [TuyaSmartCameraFactory cameraWithP2PType:p2pType config:config delegate:self];
             !complete?:complete(nil);
         });
@@ -572,53 +573,57 @@
     }];
 }
 
-- (void)camera:(id<TuyaSmartCameraType>)camera didOccurredError:(TYCameraErrorCode)errCode {
-    if (errCode == TY_ERROR_CONNECT_FAILED || errCode == TY_ERROR_CONNECT_DISCONNECT) {
+- (void)camera:(id<TuyaSmartCameraType>)camera didOccurredErrorAtStep:(TYCameraErrorCode)errStepCode specificErrorCode:(NSInteger)errorCode {
+    if (errStepCode == TY_ERROR_CONNECT_FAILED || errStepCode == TY_ERROR_CONNECT_DISCONNECT) {
         _connecting = NO;
         _connected = NO;
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_device_unavailable", nil)}];
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_device_unavailable", nil)}];
         [self _taskFailureWithKey:kCallBackKeyConnect error:error];
     }
-    else if (errCode == TY_ERROR_START_PREVIEW_FAILED) {
+    else if (errStepCode == TY_ERROR_START_PREVIEW_FAILED) {
         _previewing = NO;
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_preview_failed", nil)}];
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_preview_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyPreview error:error];
     }
-    else if (errCode == TY_ERROR_START_PLAYBACK_FAILED) {
+    else if (errStepCode == TY_ERROR_START_PLAYBACK_FAILED) {
         _playbacking = NO;
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_play_failed", nil)}];
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_play_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyPlayback error:error];
     }
-    else if (errCode == TY_ERROR_PAUSE_PLAYBACK_FAILED) {
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_pause_failed", nil)}];
+    else if (errStepCode == TY_ERROR_PAUSE_PLAYBACK_FAILED) {
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_pause_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyPause error:error];
     }
-    else if (errCode == TY_ERROR_RESUME_PLAYBACK_FAILED) {
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_play_failed", nil)}];
+    else if (errStepCode == TY_ERROR_RESUME_PLAYBACK_FAILED) {
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_play_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyResume error:error];
     }
-    else if (errCode == TY_ERROR_START_TALK_FAILED) {
+    else if (errStepCode == TY_ERROR_START_TALK_FAILED) {
         _talking = NO;
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_mic_failed", nil)}];
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_mic_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyTalk error:error];
     }
-    else if (errCode == TY_ERROR_SNAPSHOOT_FAILED) {
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"fail", nil)}];
+    else if (errStepCode == TY_ERROR_SNAPSHOOT_FAILED) {
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"fail", nil)}];
         [self _taskFailureWithKey:kCallBackKeySnapShot error:error];
     }
-    else if (errCode == TY_ERROR_RECORD_FAILED) {
+    else if (errStepCode == TY_ERROR_RECORD_FAILED) {
         _recording = NO;
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_failed", nil)}];
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_record_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyRecord error:error];
     }
-    else if (errCode == TY_ERROR_ENABLE_MUTE_FAILED) {
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_speaker_failed", nil)}];
+    else if (errStepCode == TY_ERROR_ENABLE_MUTE_FAILED) {
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_speaker_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyMute error:error];
     }
-    else if (errCode == TY_ERROR_ENABLE_HD_FAILED) {
-        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_change_definition_failed", nil)}];
+    else if (errStepCode == TY_ERROR_ENABLE_HD_FAILED) {
+        NSError *error = [NSError errorWithDomain:@"com.ipc.tuya" code:errorCode userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ipc_errmsg_change_definition_failed", nil)}];
         [self _taskFailureWithKey:kCallBackKeyHD error:error];
     }
+}
+
+- (void)camera:(id<TuyaSmartCameraType>)camera didOccurredError:(TYCameraErrorCode)errCode {
+    [self camera:camera didOccurredErrorAtStep:errCode specificErrorCode:-1];
 }
 
 - (void)camera:(id<TuyaSmartCameraType>)camera resolutionDidChangeWidth:(NSInteger)width height:(NSInteger)height {

@@ -24,4 +24,6 @@
 
 - (void)setCouldChangedAudioMode:(BOOL)couldChange forCamera:(NSString *)devId;
 
+- (void)observeDoorbellCall:(void(^)(NSString *devId, NSString *type))callback;
+
 @end

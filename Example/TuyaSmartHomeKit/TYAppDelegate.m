@@ -11,6 +11,7 @@
 #import "TPNavigationController.h"
 #import <UserNotifications/UserNotifications.h>
 #import <TuyaSmartLogger/TuyaSmartLogger.h>
+#import "TuyaSmartCameraService.h"
 
 /*
  doc link
@@ -59,6 +60,10 @@
             }
         }];
     }
+    
+    [[TuyaSmartCameraService sharedService] observeDoorbellCall:^(NSString *devId, NSString *type) {
+        NSLog(@"receive doorbell event, device id: %@", devId);
+    }];
     
     return YES;
 }

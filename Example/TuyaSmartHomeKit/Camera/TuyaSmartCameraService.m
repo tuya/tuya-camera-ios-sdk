@@ -15,6 +15,8 @@
 #define kDefaultCameraDefinition @"kDefaultCameraDefinition"
 #define kDefaultCameraOutlineEnable @"kDefaultCameraOutlineEnable"
 
+#define kTuyaDoorbellNotification @"kNotificationMQTTMessageNotification"
+
 @interface TuyaSmartCameraService () {
     NSMutableDictionary *_cacheDict;
     NSMutableDictionary *_cacheDict2;
@@ -116,6 +118,20 @@
     [_cacheDict2 setObject:@(couldChange) forKey:key];
     pthread_mutex_unlock(&_lock);
     [[NSUserDefaults standardUserDefaults] setObject:[_cacheDict2 copy] forKey:kDefaultCameraCouldChangeTalkMode];
+}
+
+- (void)observeDoorbellCall:(void(^)(NSString *devId, NSString *type))callback {
+    if (!callback) {
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] addObserverForName:kTuyaDoorbellNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+        NSDictionary *eventInfo = note.object;
+        NSString *devId = eventInfo[@"devId"];
+        NSString *eType = [eventInfo objectForKey:@"etype"];
+        if ([eType isEqualToString:@"doorbell"]) {
+            callback(devId, eType);
+        }
+    }];
 }
 
 @end
