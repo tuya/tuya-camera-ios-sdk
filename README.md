@@ -26,7 +26,6 @@ target 'your_target_name' do
 
 pod 'TuyaSmartCameraKit'
 #pod 'TuyaSmartCameraT'
-pod 'TuyaSmartHomeKit'
 
 end
 ```
