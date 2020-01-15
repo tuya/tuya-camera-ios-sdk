@@ -27,6 +27,10 @@ static NSInteger _timeout = _timeLeft;
 
 @property (nonatomic, strong) NSString *token;
 
+@property (nonatomic, strong) NSString *ssid;
+
+@property (nonatomic, strong) NSString *pwd;
+
 @end
 
 @implementation TYQRCodeAddDeviceViewController
@@ -147,12 +151,12 @@ static NSInteger _timeout = _timeLeft;
 
 - (void)commitQRModeActionWithToken:(NSString *)token {
     self.token = token;
-    NSString *ssid = self.ssidField.text;
-    NSString *pswd = self.passwordField.text ? self.passwordField.text : @"";
+    self.ssid = self.ssidField.text;
+    self.pwd = self.passwordField.text ? self.passwordField.text : @"";
     
     NSDictionary *info = @{
-                           @"s": ssid,
-                           @"p": pswd,
+                           @"s": self.ssid,
+                           @"p": self.pwd,
                            @"t": token
                            };
     self.qrCodeView.image = [TYAddDeviceUtils qrCodeWithString:[info tysdk_JSONString] width:self.view.frame.size.width - 44];
@@ -234,7 +238,7 @@ static NSInteger _timeout = _timeLeft;
 
 - (void)startAction {
     [TuyaSmartActivator sharedInstance].delegate = self;
-    [[TuyaSmartActivator sharedInstance] startConfigWiFiWithToken:self.token timeout:_timeout];
+    [[TuyaSmartActivator sharedInstance] startConfigWiFi:TYActivatorModeQRCode ssid:self.ssid password:self.pwd token:self.token timeout:_timeout];
     [self countDown];
     self.qrCodeView.hidden = YES;
     self.startButton.hidden = YES;
