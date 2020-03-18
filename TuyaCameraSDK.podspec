@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TuyaCameraSDK'
-  s.version          = '3.14.1'
+  s.version          = '3.15.3'
   s.summary          = 'open SDK code for tuya smart camera.'
 
 # This description is used to generate tags and improve search results.
@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wangjing@tuya.com' => 'wangjing@tuya.com' }
-  s.source = { :http => "https://airtake-public-data.oss-cn-hangzhou.aliyuncs.com/smart/app/package/sdk/ios/#{s.name}-#{s.version}.zip", :type => "zip" }
+  s.source = { :http => "https://airtake-public-data-1254153901.cos.ap-shanghai.myqcloud.com/smart/app/package/sdk/ios/#{s.name}-#{s.version}.zip", :type => "zip" }
 
   s.ios.deployment_target = '9.0'
 

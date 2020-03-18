@@ -94,7 +94,7 @@ static NSInteger _timeout = _timeLeft;
     UIButton *qrModeButton = [UIButton buttonWithType:UIButtonTypeCustom];
     qrModeButton.layer.cornerRadius = 5;
     qrModeButton.frame = CGRectMake(10, currentY, APP_SCREEN_WIDTH - 20, labelHeight);
-    [qrModeButton setTitle:@"Add device in EZ mode" forState:UIControlStateNormal];
+    [qrModeButton setTitle:@"Add device in QR mode" forState:UIControlStateNormal];
     qrModeButton.backgroundColor = UIColor.orangeColor;
     [qrModeButton addTarget:self action:@selector(addDeviceWithQRMode) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:qrModeButton];

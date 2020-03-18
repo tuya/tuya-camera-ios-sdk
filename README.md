@@ -24,15 +24,16 @@ platform :ios, '9.0'
 
 target 'your_target_name' do
 
-pod 'TuyaSmartCameraKit'
-#pod 'TuyaSmartCameraT'
+  pod "TuyaSmartActivatorKit"
+	pod 'TuyaSmartCameraKit'
+	#pod 'TuyaSmartCameraT'
 
 end
 ```
 
-TuyaSmartCameraKit just support p2p 2.0,  if you want integrate p2p 1.0 camera, you could add this code: ```pod 'TuyaSmartCameraT'```.
+TuyaSmartCameraKit just support p2p 2.0,  if you want integrate p2p 1.0 camera, you could add this code: `pod 'TuyaSmartCameraT'`.
 
-```TuyaSmartCameraDefault``` is removed from sdk, you can get it from demo in this repo.
+`TuyaSmartCamera` is removed from sdk, you can get it from demo in this repo.
 
 Execute command ```pod update```in the project's root directory to begin integration.
 
@@ -41,6 +42,25 @@ For the instructions of CocoaPods, please refer to : [CocoaPods Guides](https://
 ## Doc
 
 Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/)
+
+## Demo
+
+1. Clone this repo to local.
+
+2. Open terminal, run these command:
+
+   ```ruby
+   cd tuyasmart_camera_ios_sdk/Example/
+   pod install
+   ```
+
+3. Open `TuyaSmartHomeKit.xcworkspace`.
+
+4. Refer to [Preparation work](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/resource/Preparation.html), add the security image to project, and modify the `bundleId`. 
+
+5. Open `TYAppDelegate.m`, complement the `appKey`, `appSecret`. If you need `TYCameraCloudServicePanelSDK`, also need to complement the App's channel id. 
+
+6. Run project. Since video decode with hardware decoding, so please debug with iPhone.
 
 ## ChangeLog
 
