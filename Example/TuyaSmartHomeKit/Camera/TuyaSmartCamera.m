@@ -10,8 +10,8 @@
 #import <TuyaSmartDeviceKit/TuyaSmartDeviceKit.h>
 #import "TuyaSmartCameraService.h"
 
-#define kTuyaSmartIPCConfigAPI @"tuya.m.ipc.config.get"
-#define kTuyaSmartIPCConfigAPIVersion @"2.0"
+#define kTuyaSmartIPCConfigAPI @"tuya.m.rtc.session.init"
+#define kTuyaSmartIPCConfigAPIVersion @"1.0"
 
 #define kCallBackKeyConnect     @"connect"
 #define kCallBackKeyPreview     @"preview"
