@@ -32,7 +32,7 @@ end
 
 ```
 
-TuyaSmartCameraKit 现在只支持 p2p 2.0 以上的设备, 如果你需要集成 p2p 1.0 的 SDK，可以添加`pod 'TuyaSmartCameraT'`。
+TuyaSmartCameraKit 默认不支持 p2p 1.0 的设备, 如果你需要集成 p2p 1.0 的 SDK，可以添加`pod 'TuyaSmartCameraT'`。
 
 demo 中有个 `TuyaSmartCamera`类，是对 TuyaCamera 功能的二次封装，集成时，可参考此类实现。
 

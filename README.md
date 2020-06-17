@@ -31,7 +31,7 @@ target 'your_target_name' do
 end
 ```
 
-TuyaSmartCameraKit just support p2p 2.0,  if you want integrate p2p 1.0 camera, you could add this code: `pod 'TuyaSmartCameraT'`.
+TuyaSmartCameraKit is not support p2p 1.0 by default,  if you want integrate p2p 1.0 camera, you could add this code: `pod 'TuyaSmartCameraT'`.
 
 `TuyaSmartCamera` is removed from sdk, you can get it from demo in this repo.
 
