@@ -26,6 +26,7 @@ target 'your_target_name' do
 
   pod "TuyaSmartActivatorKit"
 	pod 'TuyaSmartCameraKit'
+  pod 'TYEncryptImage'
 	#pod 'TuyaSmartCameraT'
 
 end
@@ -41,7 +42,7 @@ For the instructions of CocoaPods, please refer to : [CocoaPods Guides](https://
 
 ## Doc
 
-Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/)
+Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/resource/Camera.html)
 
 ## Demo
 
@@ -64,4 +65,4 @@ Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuya
 
 ## ChangeLog
 
-[ChangeLog](https://tuyainc.github.io/tuyasmart_camera_ios_sdk_doc/en/resource/version_record.html)
+[ChangeLog](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/resource/ipc/version_record.html)

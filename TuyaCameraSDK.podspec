@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TuyaCameraSDK'
-  s.version          = '3.15.3'
+  s.version          = '3.17.3'
   s.summary          = 'open SDK code for tuya smart camera.'
 
 # This description is used to generate tags and improve search results.

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "TuyaSmartCameraKit"
-  s.version = "4.4.4"
+  s.version = "4.17.1"
   s.summary = "open SDK code for tuya smart camera."
   s.license = {"type"=>"MIT", "file"=>"LICENSE"}
   s.authors = {"fulang@tuya.com"=>"fulang@tuya.com"}
