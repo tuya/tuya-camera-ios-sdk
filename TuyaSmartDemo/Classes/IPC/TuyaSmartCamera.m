@@ -180,6 +180,7 @@
 }
 
 - (void)disConnect {
+    [self.camera.videoView stopPlay];
     [self stopPreview];
     [self stopPlayback];
     [self.camera disConnect];
@@ -195,6 +196,7 @@
 }
 
 - (void)stopPreview {
+    [self.camera.videoView stopPlay];
     [_callbacks removeObjectForKey:kCallBackKeyPreview];
     [self stopRecord:nil failure:nil];
     [self stopTalk];
@@ -234,6 +236,7 @@
 }
 
 - (void)stopPlayback {
+    [self.camera.videoView stopPlay];
     [_callbacks removeObjectForKey:kCallBackKeyPlayback];
     [_callbacks removeObjectForKey:kCallBackKeyPause];
     [_callbacks removeObjectForKey:kCallBackKeyResume];
@@ -404,6 +407,7 @@
             TuyaSmartCameraConfig *config = [TuyaSmartCameraFactory ipcConfigWithUid:[TuyaSmartUser sharedInstance].uid localKey:self.device.deviceModel.localKey configData:result];
             config.traceId = @"";
             self.camera = [TuyaSmartCameraFactory cameraWithP2PType:p2pType config:config delegate:self];
+            self.camera.autoRender = NO;
             self.downloadManager.camera = self.camera;
             !complete?:complete(nil);
         });
@@ -506,6 +510,7 @@
 - (void)cameraDidBeginPreview:(id<TuyaSmartCameraType>)camera {
     [self.camera getHD];
     [self _taskSuccessWithKey:kCallBackKeyPreview];
+    [self.camera.videoView startPlay];
 }
 
 - (void)cameraDidStopPreview:(id<TuyaSmartCameraType>)camera {
@@ -515,6 +520,7 @@
 - (void)cameraDidBeginPlayback:(id<TuyaSmartCameraType>)camera {
     _playbackPaused = NO;
     [self _taskSuccessWithKey:kCallBackKeyPlayback];
+    [self.camera.videoView startPlay];
 }
 
 - (void)cameraDidPausePlayback:(id<TuyaSmartCameraType>)camera {
@@ -673,11 +679,10 @@
     _videoFrameSize = CGSizeMake(width, height);
 }
 
-- (void)camera:(id<TuyaSmartCameraType>)camera ty_didReceiveFrameData:(const char *)frameData dataSize:(unsigned int)size frameInfo:(TuyaSmartVideoStreamInfo)frameInfo {
-    
-}
-
 - (void)camera:(id<TuyaSmartCameraType>)camera ty_didReceiveVideoFrame:(CMSampleBufferRef)sampleBuffer frameInfo:(TuyaSmartVideoFrameInfo)frameInfo {
+    CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)sampleBuffer;
+    [self.camera.videoView displayPixelBuffer:pixelBuffer];
+    
     [self.observers enumerateObjectsUsingBlock:^(id<TuyaSmartCameraObserver> obj, NSUInteger idx, BOOL * stop) {
         if ([obj respondsToSelector:@selector(camera:didReceiveVideoFrame:frameInfo:)]) {
             [obj camera:self didReceiveVideoFrame:sampleBuffer frameInfo:frameInfo];
