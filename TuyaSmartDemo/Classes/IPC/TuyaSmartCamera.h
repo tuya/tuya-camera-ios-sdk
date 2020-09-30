@@ -123,15 +123,5 @@ typedef void(^TYPlaybackImageDownloadCallback)(UIImage *image, int errCode);
 
 - (void)stopRecord:(IPCVoidBlock)success failure:(IPCErrorBlock)failure;
 
-- (void)downloadThumbnailsWithTimeSlice:(NSDictionary *)timeSlice complete:(TYPlaybackImageDownloadCallback)complete;
-
-- (void)cancelDownloadPlayback;
-
-- (void)downloadPlaybackVideoWithStartTime:(NSInteger)startTime endTime:(NSInteger)endTime success:(void(^)(NSString *filePath))success progress:(void(^)(int progress))progress failure:(void(^)(int errCode))failure;
-
-- (void)setPlaybackSpeed:(TuyaSmartCameraPlaybackSpeed)speed callback:(void(^)(int errCode))callback;
-
-- (void)deletePlaybackVideoWithDate:(TuyaSmartPlaybackDate *)date callback:(void(^)(int errCode))callback;
-
 @end
 

@@ -9,7 +9,6 @@
 #import "TuyaSmartCamera.h"
 #import <TuyaSmartDeviceKit/TuyaSmartDeviceKit.h>
 #import "TuyaSmartCameraService.h"
-#import "TYPlaybackImageDownloadManager.h"
 
 #define kTuyaSmartIPCConfigAPI @"tuya.m.rtc.session.init"
 #define kTuyaSmartIPCConfigAPIVersion @"1.0"
@@ -59,8 +58,6 @@
 
 @property (nonatomic, strong) id<TuyaSmartCameraType> camera;
 
-@property (nonatomic, strong) TYPlaybackImageDownloadManager *downloadManager;
-
 @property (nonatomic, strong) _TuyaSmartVideoView *videoViewContainer;
 
 @property (nonatomic, strong) NSMutableDictionary<NSString *, TYNumberArray *> *playbackDays;
@@ -86,7 +83,6 @@
         _devId = devId;
         _device = [TuyaSmartDevice deviceWithDeviceId:devId];
         _dpManager = [[TuyaSmartCameraDPManager alloc] initWithDeviceId:devId];
-        _downloadManager = [TYPlaybackImageDownloadManager new];
         _observers = [NSPointerArray weakObjectsPointerArray];
         _callbacks = [NSMutableDictionary new];
         
@@ -180,7 +176,6 @@
 }
 
 - (void)disConnect {
-    [self.camera.videoView stopPlay];
     [self stopPreview];
     [self stopPlayback];
     [self.camera disConnect];
@@ -196,7 +191,6 @@
 }
 
 - (void)stopPreview {
-    [self.camera.videoView stopPlay];
     [_callbacks removeObjectForKey:kCallBackKeyPreview];
     [self stopRecord:nil failure:nil];
     [self stopTalk];
@@ -236,17 +230,12 @@
 }
 
 - (void)stopPlayback {
-    [self.camera.videoView stopPlay];
     [_callbacks removeObjectForKey:kCallBackKeyPlayback];
     [_callbacks removeObjectForKey:kCallBackKeyPause];
     [_callbacks removeObjectForKey:kCallBackKeyResume];
     [self stopRecord:nil failure:nil];
     [self.camera stopPlayback];
     self.playMode = TuyaSmartCameraPlayModeNone;
-}
-
-- (void)setPlaybackSpeed:(TuyaSmartCameraPlaybackSpeed)speed callback:(void(^)(int errCode))callback {
-    [self.camera setPlaybackSpeed:speed response:callback];
 }
 
 - (void)playbackDaysInYear:(NSInteger)year month:(NSInteger)month complete:(void (^)(TYNumberArray *))complete {
@@ -270,32 +259,6 @@
         self.getRecordTimeSlicesComplete = complete;
         [self.camera queryRecordTimeSliceWithYear:date.year month:date.month day:date.day];
     }
-}
-
-- (void)downloadThumbnailsWithTimeSlice:(NSDictionary *)timeSlice complete:(TYPlaybackImageDownloadCallback)complete {
-    if (!complete) {
-        return;
-    }
-    NSString *fileName = [[timeSlice[kTuyaSmartTimeSliceStartTime] stringValue] stringByAppendingPathExtension:@"jpg"];
-    NSString *directoryPath = [[TuyaSmartCameraService sharedService] thumbnailDirectoryForDevice:self.devId];
-    NSString *filePath = [directoryPath stringByAppendingPathComponent:fileName];
-    
-    [self.downloadManager downloadThumbnailsWithTimeSlice:timeSlice filePath:filePath callback:complete];
-}
-
-- (void)downloadPlaybackVideoWithStartTime:(NSInteger)startTime endTime:(NSInteger)endTime success:(void(^)(NSString *filePath))success progress:(void(^)(int progress))progress failure:(void(^)(int errCode))failure {
-    NSString *filePath = [self videoTempPathForDevice:self.devId];
-    [self.camera startDownloadPlaybackVideoWithStartTime:startTime endTime:endTime filePath:filePath success:^{
-        !success?:success(filePath);
-    } progress:progress failure:failure];
-}
-
-- (void)cancelDownloadPlayback {
-    [self.camera stopDownloadPlaybackVideo];
-}
-
-- (void)deletePlaybackVideoWithDate:(TuyaSmartPlaybackDate *)date callback:(void(^)(int errCode))callback {
-    [self.camera deletePlayBackVideosWithYear:date.year month:date.month day:date.day callback:callback];
 }
 
 - (void)startTalk:(IPCVoidBlock)success failure:(IPCErrorBlock)failure {
@@ -407,8 +370,6 @@
             TuyaSmartCameraConfig *config = [TuyaSmartCameraFactory ipcConfigWithUid:[TuyaSmartUser sharedInstance].uid localKey:self.device.deviceModel.localKey configData:result];
             config.traceId = @"";
             self.camera = [TuyaSmartCameraFactory cameraWithP2PType:p2pType config:config delegate:self];
-            self.camera.autoRender = NO;
-            self.downloadManager.camera = self.camera;
             !complete?:complete(nil);
         });
         
@@ -510,7 +471,6 @@
 - (void)cameraDidBeginPreview:(id<TuyaSmartCameraType>)camera {
     [self.camera getHD];
     [self _taskSuccessWithKey:kCallBackKeyPreview];
-    [self.camera.videoView startPlay];
 }
 
 - (void)cameraDidStopPreview:(id<TuyaSmartCameraType>)camera {
@@ -520,7 +480,6 @@
 - (void)cameraDidBeginPlayback:(id<TuyaSmartCameraType>)camera {
     _playbackPaused = NO;
     [self _taskSuccessWithKey:kCallBackKeyPlayback];
-    [self.camera.videoView startPlay];
 }
 
 - (void)cameraDidPausePlayback:(id<TuyaSmartCameraType>)camera {
@@ -681,7 +640,6 @@
 
 - (void)camera:(id<TuyaSmartCameraType>)camera ty_didReceiveVideoFrame:(CMSampleBufferRef)sampleBuffer frameInfo:(TuyaSmartVideoFrameInfo)frameInfo {
     CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)sampleBuffer;
-    [self.camera.videoView displayPixelBuffer:pixelBuffer];
     
     [self.observers enumerateObjectsUsingBlock:^(id<TuyaSmartCameraObserver> obj, NSUInteger idx, BOOL * stop) {
         if ([obj respondsToSelector:@selector(camera:didReceiveVideoFrame:frameInfo:)]) {

@@ -12,14 +12,14 @@ PODS:
     - MQTTClient/Min
   - MQTTClient/Min (0.15.2)
   - Reachability (3.2)
-  - SDWebImage (5.8.4):
-    - SDWebImage/Core (= 5.8.4)
-  - SDWebImage/Core (5.8.4)
+  - SDWebImage (5.9.2):
+    - SDWebImage/Core (= 5.9.2)
+  - SDWebImage/Core (5.9.2)
   - TuyaCameraSDK (3.17.3)
-  - TuyaSmartActivatorKit (3.17.6):
-    - TuyaSmartDeviceKit
-  - TuyaSmartBaseKit (3.17.6):
-    - TuyaSmartUtil
+  - TuyaSmartActivatorKit (3.19.1):
+    - TuyaSmartDeviceKit (>= 3.19.0)
+  - TuyaSmartBaseKit (3.19.2):
+    - TuyaSmartUtil (>= 3.19.0)
     - YYModel
   - TuyaSmartCameraBase (4.17.0)
   - TuyaSmartCameraKit (4.17.1):
@@ -56,17 +56,22 @@ PODS:
     - TuyaSmartDemo/Base
   - TuyaSmartDemo/UserInfo (0.8.2):
     - TuyaSmartDemo/Base
-  - TuyaSmartDeviceKit (3.17.11):
-    - TuyaSmartBaseKit
-    - TuyaSmartMQTTChannelKit
-    - TuyaSmartSocketChannelKit
-  - TuyaSmartMQTTChannelKit (3.17.3):
+  - TuyaSmartDeviceCoreKit (3.19.1):
+    - TuyaSmartBaseKit (>= 3.19.0)
+    - TuyaSmartMQTTChannelKit (>= 3.19.0)
+    - TuyaSmartSocketChannelKit (>= 3.19.0)
+  - TuyaSmartDeviceKit (3.19.4):
+    - TuyaSmartBaseKit (>= 3.19.0)
+    - TuyaSmartDeviceCoreKit (>= 3.19.0)
+  - TuyaSmartMQTTChannelKit (3.19.1):
     - MQTTClient (= 0.15.2)
-    - TuyaSmartBaseKit
-  - TuyaSmartSocketChannelKit (3.17.6):
+    - TuyaSmartBaseKit (>= 3.19.0)
+    - TuyaSmartQUIC
+  - TuyaSmartQUIC (1.1.1)
+  - TuyaSmartSocketChannelKit (3.19.0):
     - CocoaAsyncSocket
-    - TuyaSmartBaseKit
-  - TuyaSmartUtil (3.17.6)
+    - TuyaSmartBaseKit (>= 3.19.0)
+  - TuyaSmartUtil (3.19.0)
   - TYEncryptImage (3.20.0)
   - YYModel (1.0.4)
 
@@ -93,8 +98,10 @@ SPEC REPOS:
     - TuyaSmartCameraBase
     - TuyaSmartCameraKit
     - TuyaSmartCameraM
+    - TuyaSmartDeviceCoreKit
     - TuyaSmartDeviceKit
     - TuyaSmartMQTTChannelKit
+    - TuyaSmartQUIC
     - TuyaSmartSocketChannelKit
     - TuyaSmartUtil
     - TYEncryptImage
@@ -111,18 +118,20 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MQTTClient: 902c7bcac1501595f3d0b15178c7205b40331fb0
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImage: 0b42b8719ab0c5257177d5894306e8a336b21cbb
   TuyaCameraSDK: 04056efc44f06d5eabdf693989e6d7ba7c84c189
-  TuyaSmartActivatorKit: a3a648c209046bf2fb6efb362fb82c0b6c075638
-  TuyaSmartBaseKit: 7450992991c7ccff63d28b2994d9d08202b63e3e
+  TuyaSmartActivatorKit: 761b6785aab18d1cb2727caa87c3db1777b3f475
+  TuyaSmartBaseKit: bdf0e1eca3e071096cf66886f2a01d1b930413d3
   TuyaSmartCameraBase: eeed37caf4a6489a507f8b2f0c4510d210a536ec
   TuyaSmartCameraKit: f7609fd0ae5cebf21b823fbd6ca21812ac347a1d
   TuyaSmartCameraM: e98946f83e1f6249f3f233c6499330768f0123b3
   TuyaSmartDemo: 61842026b235127d392dcb8ca5bfe3815f425805
-  TuyaSmartDeviceKit: 7649464a184017f5f35450c80c652bc83cf77a17
-  TuyaSmartMQTTChannelKit: 40c98e2123e4c855c62fc6827052b6c63592058c
-  TuyaSmartSocketChannelKit: 49ae6cf90449fc8c9fb1e1735abd8f9e94314fe8
-  TuyaSmartUtil: f29791576de8ab7f6cd6c60f0bb57985924a36eb
+  TuyaSmartDeviceCoreKit: b7aa783831e50f9ab31f1062da9d4a67367d2035
+  TuyaSmartDeviceKit: 467fa2e89eedc745bad8fd65ae3df51023b71010
+  TuyaSmartMQTTChannelKit: 0323297ea3ff2446e8c0db8d794c2302c0246983
+  TuyaSmartQUIC: 5bb81563fedf5b739ac50a5abbf42ec807cfb64b
+  TuyaSmartSocketChannelKit: 9114f88b361a6df55f2cfde22f02ec6bffa07c2e
+  TuyaSmartUtil: 6c9da514ce8a3bc02478180c27b9e3d76a66e14c
   TYEncryptImage: ed87e1f7eed35898eb30d17cf3b02fff6f9c8011
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 

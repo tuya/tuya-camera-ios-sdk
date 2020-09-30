@@ -14,7 +14,6 @@
 #import "TuyaSmartCamera.h"
 #import "TPDemoViewConstants.h"
 #import "TPDemoProgressUtils.h"
-#import "TYDownloadingProgressView.h"
 
 #define VideoViewWidth [UIScreen mainScreen].bounds.size.width
 #define VideoViewHeight ([UIScreen mainScreen].bounds.size.width / 16 * 9)
@@ -50,26 +49,7 @@ TYCameraRecordListViewDelegate>
 
 @property (nonatomic, strong) UIButton *pauseButton;
 
-@property (nonatomic, strong) UIButton *downloadButton;
-
-@property (nonatomic, strong) UIButton *deleteButton;
-
 @property (nonatomic, strong) UIView *controlBar;
-
-@property (nonatomic, strong) UIButton *speedButton;
-
-
-@property (nonatomic, strong) UILabel *startTimeLabel;
-@property (nonatomic, strong) UISlider *startTimeSlider;
-@property (nonatomic, strong) UILabel *endTimeLabel;
-@property (nonatomic, strong) UISlider *endTimeSlider;
-@property (nonatomic, strong) UIButton *confirmButton;
-@property (nonatomic, strong) UIView *downloadView;
-
-@property (nonatomic, assign) NSInteger downloadStartTime;
-@property (nonatomic, assign) NSInteger downloadEndTime;
-
-@property (nonatomic, strong) TYDownloadingProgressView *progressView;
 
 @property (nonatomic, strong) TuyaSmartPlaybackDate *currentDate;
 
@@ -88,16 +68,12 @@ TYCameraRecordListViewDelegate>
     [self.view addSubview:self.soundButton];
     [self.view addSubview:self.calendarView];
     [self.view addSubview:self.controlBar];
-    [self.view addSubview:self.speedButton];
     
     [self.retryButton addTarget:self action:@selector(retryAction) forControlEvents:UIControlEventTouchUpInside];
     [self.soundButton addTarget:self action:@selector(soundAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.speedButton addTarget:self action:@selector(speedButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [self.photoButton addTarget:self action:@selector(photoAction) forControlEvents:UIControlEventTouchUpInside];
     [self.recordButton addTarget:self action:@selector(recordAction) forControlEvents:UIControlEventTouchUpInside];
     [self.pauseButton addTarget:self action:@selector(pauseAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.downloadButton addTarget:self action:@selector(downloadAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.deleteButton addTarget:self action:@selector(deleteButtonAction) forControlEvents:UIControlEventTouchUpInside];
     
     self.topBarView.leftItem = self.leftBackItem;
     
@@ -176,49 +152,6 @@ TYCameraRecordListViewDelegate>
     self.recordButton.enabled = enabled;
 }
 
-- (void)setupDownloadView {
-    if (!_downloadView) {
-        _downloadView = [[UIView alloc] initWithFrame:self.recordListView.frame];
-        _downloadView.backgroundColor = [UIColor whiteColor];
-        [_downloadView addSubview:self.startTimeLabel];
-        [_downloadView addSubview:self.endTimeLabel];
-        [_downloadView addSubview:self.startTimeSlider];
-        [_downloadView addSubview:self.endTimeSlider];
-        [_downloadView addSubview:self.confirmButton];
-        self.startTimeLabel.frame = CGRectMake(8, 8, CGRectGetWidth(_downloadView.frame) - 16, 20);
-        self.startTimeSlider.frame = CGRectMake(8, 28, CGRectGetWidth(_downloadView.frame) - 16, 56);
-        self.endTimeLabel.frame = CGRectMake(8, 108, CGRectGetWidth(_downloadView.frame)-16, 20);
-        self.endTimeSlider.frame = CGRectMake(8, 128, CGRectGetWidth(_downloadView.frame) - 16, 56);
-        self.confirmButton.frame = CGRectMake(0, 0, 200, 40);
-        self.confirmButton.center = CGPointMake(CGRectGetMidX(_downloadView.bounds), CGRectGetHeight(_downloadView.bounds)-35);
-        [self.confirmButton addTarget:self action:@selector(downloadConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-        [self.startTimeSlider addTarget:self action:@selector(startTimeSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-        [self.endTimeSlider addTarget:self action:@selector(endTimeSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-    }
-    NSInteger startTime = [self startTimestamp];
-    NSInteger endTime = [self endTimestamp];
-    self.startTimeLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Start", @""), [self timeStringWithTimestamp:startTime]];
-    self.endTimeLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"End", @""), [self timeStringWithTimestamp:endTime]];
-    self.startTimeSlider.value = 0.0;
-    self.endTimeSlider.value = 1.0;
-    self.downloadStartTime = startTime;
-    self.downloadEndTime = endTime;
-}
-
-- (NSInteger)startTimestamp {
-    if (self.recordListView.dataSource.count == 0) {
-        return 0;
-    }
-    return [[self.recordListView.dataSource.firstObject objectForKey:kTuyaSmartTimeSliceStartTime] integerValue];
-}
-
-- (NSInteger)endTimestamp {
-    if (self.recordListView.dataSource.count == 0) {
-        return 0;
-    }
-    return [[self.recordListView.dataSource.lastObject objectForKey:kTuyaSmartTimeSliceStopTime] integerValue];
-}
-
 - (NSString *)timeStringWithTimestamp:(NSInteger)timestamp {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:timestamp];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -227,120 +160,6 @@ TYCameraRecordListViewDelegate>
 }
 
 #pragma mark - Action
-- (void)speedButtonAction {
-    __weak typeof(self) weakSelf = self;
-    UIAlertController *speedSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *speed_20x = [UIAlertAction actionWithTitle:@"2.0x" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.camera setPlaybackSpeed:TuyaSmartCameraPlaybackSpeed2_0x callback:^(int errCode) {
-            if (errCode != 0) {
-                [TPDemoProgressUtils showError:NSLocalizedString(@"Change Speed Failed", @"")];
-            }else {
-                [weakSelf.speedButton setTitle:@"2.0x" forState:UIControlStateNormal];
-            }
-        }];
-    }];
-    
-    UIAlertAction *speed_10x = [UIAlertAction actionWithTitle:@"1.0x" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self.camera setPlaybackSpeed:TuyaSmartCameraPlaybackSpeed1_0x callback:^(int errCode) {
-            if (errCode != 0) {
-                [TPDemoProgressUtils showError:NSLocalizedString(@"Change Speed Failed", @"")];
-            }else {
-                [weakSelf.speedButton setTitle:@"1.0x" forState:UIControlStateNormal];
-            }
-        }];
-    }];
-    
-    [speedSheet addAction:speed_10x];
-    [speedSheet addAction:speed_20x];
-    [self presentViewController:speedSheet animated:YES completion:nil];
-}
-- (void)deleteButtonAction {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"ipc_cloud_delete_comfirm_today", @"") preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *confirm = [UIAlertAction actionWithTitle:NSLocalizedString(@"ipc_confirm_sure", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self deleteVideos];
-    }];
-    
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"ipc_confirm_cancel", @"") style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:cancel];
-    [alert addAction:confirm];
-    
-    [self presentViewController:alert animated:YES completion:nil];
-}
-
-- (void)deleteVideos {
-    if (!self.currentDate) {
-        return;
-    }
-    [self.camera stopPlayback];
-    
-    __weak typeof(self) weakSelf = self;
-    [TPDemoProgressUtils showMessag:@"" toView:self.view];
-    [self.camera deletePlaybackVideoWithDate:self.currentDate callback:^(int errCode) {
-        [TPDemoProgressUtils hideHUDForView:weakSelf.view animated:YES];
-        if (errCode == 0) {
-            [weakSelf.playbackDays removeObject:@(weakSelf.currentDate.day)];
-            [TPDemoProgressUtils showSuccess:NSLocalizedString(@"ipc_cloud_delete_success", @"") toView:weakSelf.view];
-        }else {
-            [TPDemoProgressUtils showError:NSLocalizedString(@"ipc_cloud_delete_failure", @"")];
-        }
-    }];
-}
-
-- (void)downloadAction {
-    if (self.downloadView.superview) {
-        [self.downloadView removeFromSuperview];
-    }else {
-        [self setupDownloadView];
-        [self.view addSubview:self.downloadView];
-    }
-}
-
-- (void)downloadConfirmAction {
-    if (self.downloadEndTime <= self.downloadStartTime) {
-        return;
-    }
-    [self checkPhotoPermision:^(BOOL result) {
-        [self doPlaybackDownload];
-    }];
-}
-
-- (void)doPlaybackDownload {
-    [self.progressView show];
-    self.progressView.progress = 0;
-    __weak typeof(self) weakSelf = self;
-    [self.camera downloadPlaybackVideoWithStartTime:self.downloadStartTime endTime:self.downloadEndTime success:^(NSString *filePath) {
-        [weakSelf.progressView hide];
-        if ([TYCameraUtil saveVideoToPhotoLibrary:filePath]) {
-            [TPDemoProgressUtils showSuccess:NSLocalizedString(@"ipc_cloud_download_complete", @"") toView:weakSelf.view];
-        }else {
-            [TPDemoProgressUtils showError:NSLocalizedString(@"Video failed save to photo library", @"")];
-        }
-    } progress:^(int progress) {
-        [weakSelf.progressView setProgress:progress];
-    } failure:^(int errCode) {
-        [weakSelf.progressView hide];
-        [TPDemoProgressUtils showError:NSLocalizedString(@"ipc_cloud_download_failed", @"")];
-    }];
-    
-    self.progressView.cancelAction = ^{
-        [weakSelf.camera cancelDownloadPlayback];
-        [weakSelf.progressView hide];
-    };
-}
-
-- (void)startTimeSliderValueChanged:(UISlider *)slider {
-    NSInteger startTimestamp = [self startTimestamp];
-    NSInteger endTimestamp = [self endTimestamp];
-    self.downloadStartTime = (endTimestamp - startTimestamp) * slider.value + startTimestamp;
-    self.startTimeLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Start", @""), [self timeStringWithTimestamp:self.downloadStartTime]];
-}
-
-- (void)endTimeSliderValueChanged:(UISlider *)slider {
-    NSInteger startTimestamp = [self startTimestamp];
-    NSInteger endTimestamp = [self endTimestamp];
-    self.downloadEndTime = (endTimestamp - startTimestamp) * slider.value + startTimestamp;
-    self.endTimeLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"End", @""), [self timeStringWithTimestamp:self.downloadEndTime]];
-}
 
 - (void)dateAction {
     [self.view bringSubviewToFront:self.calendarView];
@@ -399,15 +218,15 @@ TYCameraRecordListViewDelegate>
     [self checkPhotoPermision:^(BOOL result) {
         if (result) {
             if (self.camera.isRecording) {
-                [self.camera startRecord:^{
-                    self.recordButton.tintColor = [UIColor blueColor];
+                [self.camera stopRecord:^{
+                    self.recordButton.tintColor = [UIColor blackColor];
+                    [self showAlertWithMessage:NSLocalizedString(@"ipc_multi_view_video_saved", @"") complete:nil];
                 } failure:^(NSError *error) {
                     [TPDemoProgressUtils showError:NSLocalizedString(@"record failed", @"")];
                 }];
             }else {
-                [self.camera stopRecord:^{
-                    self.recordButton.tintColor = [UIColor blackColor];
-                    [self showAlertWithMessage:NSLocalizedString(@"ipc_multi_view_video_saved", @"") complete:nil];
+                [self.camera startRecord:^{
+                    self.recordButton.tintColor = [UIColor blueColor];
                 } failure:^(NSError *error) {
                     [TPDemoProgressUtils showError:NSLocalizedString(@"record failed", @"")];
                 }];
@@ -491,29 +310,6 @@ TYCameraRecordListViewDelegate>
     cell.startTimeLabel.text = [formatter stringFromDate:startDate];
     cell.durationLabel.text  = [self _durationTimeStampWithStart:startDate end:stopDate];
     [cell.durationLabel sizeToFit];
-
-    [self.camera downloadThumbnailsWithTimeSlice:source complete:^(UIImage *image, int errCode) {
-        cell.iconImageView.image = image;
-    }];
-    
-    TuyaSmartCameraPlaybackType type = [source[kTuyaSmartTimeSliceType] intValue];
-    switch (type) {
-        case TuyaSmartCameraPlaybackNormal:
-            cell.typeLabel.text = @"Normal";
-            break;
-        case TuyaSmartCameraPlaybackMotionDetection:
-            cell.typeLabel.text = @"Motion";
-            break;
-        case TuyaSmartCameraPlaybackFaceDetection:
-            cell.typeLabel.text = @"Face";
-            break;
-        case TuyaSmartCameraPlaybackBodyDetection:
-            cell.typeLabel.text = @"Body";
-            break;
-        default:
-            cell.typeLabel.text = @"Other";
-            break;
-    }
 }
 
 - (NSString *)_durationTimeStampWithStart:(NSDate *)start end:(NSDate *)end {
@@ -666,26 +462,6 @@ TYCameraRecordListViewDelegate>
     return _pauseButton;
 }
 
-- (UIButton *)downloadButton {
-    if (!_downloadButton) {
-        _downloadButton = [[UIButton alloc] init];
-        UIImage *image = [[UIImage imageNamed:@"ty_camera_tool_download_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [_downloadButton setImage:image forState:UIControlStateNormal];
-        [_downloadButton setTintColor:[UIColor blackColor]];
-    }
-    return _downloadButton;
-}
-
-- (UIButton *)deleteButton {
-    if (!_deleteButton) {
-        _deleteButton = [[UIButton alloc] init];
-        UIImage *image = [[UIImage imageNamed:@"ty_camera_tool_delete_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        [_deleteButton setImage:image forState:UIControlStateNormal];
-        [_deleteButton setTintColor:[UIColor blackColor]];
-    }
-    return _deleteButton;
-}
-
 - (UIView *)controlBar {
     if (!_controlBar) {
         CGFloat top = VideoViewHeight + APP_TOP_BAR_HEIGHT;
@@ -693,9 +469,7 @@ TYCameraRecordListViewDelegate>
         [_controlBar addSubview:self.photoButton];
         [_controlBar addSubview:self.pauseButton];
         [_controlBar addSubview:self.recordButton];
-        [_controlBar addSubview:self.downloadButton];
-        [_controlBar addSubview:self.deleteButton];
-        CGFloat width = VideoViewWidth / 5;
+        CGFloat width = VideoViewWidth / 3;
         [_controlBar.subviews enumerateObjectsUsingBlock:^(UIView *obj, NSUInteger idx, BOOL *stop) {
             obj.frame = CGRectMake(width * idx, 0, width, 50);
         }];
@@ -707,64 +481,5 @@ TYCameraRecordListViewDelegate>
     return _controlBar;
 }
 
-- (UILabel *)startTimeLabel {
-    if (!_startTimeLabel) {
-        _startTimeLabel = [[UILabel alloc] init];
-        _startTimeLabel.textColor = [UIColor blackColor];
-    }
-    return _startTimeLabel;
-}
-
-- (UISlider *)startTimeSlider {
-    if (!_startTimeSlider) {
-        _startTimeSlider = [[UISlider alloc] init];
-    }
-    return _startTimeSlider;
-}
-
-- (UILabel *)endTimeLabel {
-    if (!_endTimeLabel) {
-        _endTimeLabel = [[UILabel alloc] init];
-        _endTimeLabel.textColor = [UIColor blackColor];
-    }
-    return _endTimeLabel;
-}
-
-- (UISlider *)endTimeSlider {
-    if (!_endTimeSlider) {
-        _endTimeSlider = [[UISlider alloc] init];
-    }
-    return _endTimeSlider;
-}
-
-- (UIButton *)confirmButton {
-    if (!_confirmButton) {
-        _confirmButton = [[UIButton alloc] init];
-        [_confirmButton setTitle:NSLocalizedString(@"ipc_cloud_download", @"") forState:UIControlStateNormal];
-        _confirmButton.layer.borderColor = [UIColor blackColor].CGColor;
-        _confirmButton.layer.borderWidth = 1;
-        [_confirmButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    }
-    return _confirmButton;
-}
-
-- (UIButton *)speedButton {
-    if (!_speedButton) {
-        _speedButton = [[UIButton alloc] initWithFrame:CGRectMake(APP_SCREEN_WIDTH - 80, APP_TOP_BAR_HEIGHT + VideoViewHeight - 36, 36, 20)];
-        [_speedButton setTitle:@"1x" forState:UIControlStateNormal];
-        _speedButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
-        _speedButton.layer.borderWidth = 1.0;
-        _speedButton.layer.borderColor = [UIColor whiteColor].CGColor;
-        _speedButton.layer.cornerRadius = 2.0;
-    }
-    return _speedButton;
-}
-
-- (TYDownloadingProgressView *)progressView {
-    if (!_progressView) {
-        _progressView = [TYDownloadingProgressView new];
-    }
-    return _progressView;
-}
 
 @end
