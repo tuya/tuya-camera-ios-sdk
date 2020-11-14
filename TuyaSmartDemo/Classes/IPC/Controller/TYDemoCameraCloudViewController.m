@@ -12,6 +12,10 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 #import <TYEncryptImage/TYEncryptImage.h>
+#import <TuyaCameraUIKit/TuyaCameraUIKit.h>
+#import "TuyaSmartCloudTimePieceModel+Timeline.h"
+#import <TuyaSmartBizCore/TuyaSmartBizCore.h>
+#import <TYModuleServices/TYCameraCloudServiceProtocol.h>
 
 #define TopBarHeight 88
 #define VideoViewWidth [UIScreen mainScreen].bounds.size.width
@@ -20,7 +24,7 @@
 #define kControlRecord      @"record"
 #define kControlPhoto       @"photo"
 
-@interface TYDemoCameraCloudViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface TYDemoCameraCloudViewController ()<UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource,TuyaTimelineViewDelegate,TuyaSmartCloudManagerDelegate>
 
 @property (nonatomic, strong) TuyaSmartDevice *device;
 
@@ -32,7 +36,7 @@
 
 @property (nonatomic, strong) NSArray *eventModels;
 
-@property (nonatomic, strong) UITableView *timePiecesTable;
+@property (nonatomic, strong) TuyaTimelineView *timeLineView;
 
 @property (nonatomic, strong) UITableView *eventTable;
 
@@ -64,6 +68,8 @@
     [super viewDidLoad];
     self.device = [TuyaSmartDevice deviceWithDeviceId:self.devId];
     self.cloudManager = [[TuyaSmartCloudManager alloc] initWithDeviceId:self.devId];
+    self.cloudManager.delegate = self;
+    self.cloudManager.enableEncryptedImage = YES;
     [self.cloudManager loadCloudData:^(TuyaSmartCloudState state) {
         [self.dayCollectionView reloadData];
         [self checkCloudState:state];
@@ -74,33 +80,38 @@
     
     self.cloudManager.videoView.frame = CGRectMake(0, APP_TOP_BAR_HEIGHT, VideoViewWidth, VideoViewHeight);
     
-    self.timePiecesTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.cloudManager.videoView.bottom + 50, APP_SCREEN_WIDTH, APP_SCREEN_HEIGHT - (self.cloudManager.videoView.bottom + 100))];
-    self.timePiecesTable.delegate = self;
-    self.timePiecesTable.dataSource = self;
-    
-    self.eventTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.cloudManager.videoView.bottom + 50, APP_SCREEN_WIDTH, APP_SCREEN_HEIGHT - (self.cloudManager.videoView.bottom + 100))];
-    self.eventTable.delegate = self;
-    self.eventTable.dataSource = self;
-    self.eventTable.hidden = YES;
-    [self.view addSubview:self.timePiecesTable];
-    [self.view addSubview:self.eventTable];
-    
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.itemSize = CGSizeMake(80, 50);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     layout.minimumLineSpacing = 0;
     layout.minimumInteritemSpacing = 0;
-    self.dayCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.cloudManager.videoView.bottom, APP_SCREEN_WIDTH - 80, 50) collectionViewLayout:layout];
+    self.dayCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, self.cloudManager.videoView.bottom, APP_SCREEN_WIDTH, 50) collectionViewLayout:layout];
     [self.view addSubview:self.dayCollectionView];
     self.dayCollectionView.delegate = self;
     self.dayCollectionView.dataSource = self;
     self.dayCollectionView.backgroundColor = [UIColor whiteColor];
     [self.dayCollectionView registerClass:[TYCloudDayCollectionViewCell class] forCellWithReuseIdentifier:@"cloudDay"];
     
-    self.switchButton = [[UIButton alloc] initWithFrame:CGRectMake(self.dayCollectionView.right, self.dayCollectionView.top, 80, 50)];
-    [self.view addSubview:self.switchButton];
-    [self.switchButton setTitle:NSLocalizedString(@"Switch Table", @"") forState:UIControlStateNormal];
-    [self.switchButton addTarget:self action:@selector(switchAction) forControlEvents:UIControlEventTouchUpInside];
+    self.timeLineView = [[TuyaTimelineView alloc] initWithFrame:CGRectMake(0, self.dayCollectionView.bottom, APP_SCREEN_WIDTH, 74)];
+    self.timeLineView.delegate = self;
+    self.timeLineView.timeHeaderHeight = 24;
+    self.timeLineView.showShortMark = YES;
+    self.timeLineView.timeTextTop = 6;
+    self.timeLineView.spacePerUnit = 90;
+    self.timeLineView.selectionTimeBackgroundColor = [UIColor blackColor];
+    self.timeLineView.selectionTimeTextColor = [UIColor whiteColor];
+    self.timeLineView.backgroundColor = [UIColor whiteColor];
+    self.timeLineView.backgroundGradientColors = @[];
+    self.timeLineView.contentGradientColors = @[(__bridge id)HEXCOLORA(0x4f67ee, 0.62).CGColor, (__bridge id)HEXCOLORA(0x4d67ff, 0.09).CGColor];
+    self.timeLineView.contentGradientLocations = @[@(0.0), @(1.0)];
+    self.timeLineView.timeStringAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:9], NSForegroundColorAttributeName : HEXCOLOR(0x333300)};
+    self.timeLineView.tickMarkColor = HEXCOLORA(0x000000, 0.1);
+    [self.view addSubview:self.timeLineView];
+    
+    self.eventTable = [[UITableView alloc] initWithFrame:CGRectMake(0, self.timeLineView.bottom, APP_SCREEN_WIDTH, APP_SCREEN_HEIGHT - (self.timeLineView.bottom + 50))];
+    self.eventTable.delegate = self;
+    self.eventTable.dataSource = self;
+    [self.view addSubview:self.eventTable];
     
     [self.view addSubview:self.soundButton];
     [self.view addSubview:self.controlBar];
@@ -110,11 +121,6 @@
     [self.recordButton addTarget:self action:@selector(recordAction) forControlEvents:UIControlEventTouchUpInside];
     [self.pauseButton addTarget:self action:@selector(pauseAction) forControlEvents:UIControlEventTouchUpInside];
     
-}
-
-- (void)switchAction {
-    self.timePiecesTable.hidden = !self.timePiecesTable.hidden;
-    self.eventTable.hidden = !self.eventTable.hidden;
 }
 
 - (void)soundAction {
@@ -210,8 +216,8 @@
             break;
         case TuyaSmartCloudStateValidData:
         case TuyaSmartCloudStateExpiredData:
-            [self.dayCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
-            [self loadTimePieceForDay:self.cloudManager.cloudDays.firstObject];
+            [self.dayCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:self.cloudManager.cloudDays.count-1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+            [self loadTimePieceForDay:self.cloudManager.cloudDays.lastObject];
         default:
             break;
     }
@@ -221,8 +227,8 @@
     self.selectedDay = dayModel;
     [self.cloudManager timeLineWithCloudDay:dayModel success:^(NSArray<TuyaSmartCloudTimePieceModel *> *timePieces) {
         self.timePieces = timePieces;
-        [self.timePiecesTable reloadData];
-        [self playCloudTimePiece:self.timePieces.firstObject];
+        self.timeLineView.sourceModels = timePieces;
+        [self playCloudTimePiece:self.timePieces.firstObject playTime:0];
     } failure:^(NSError *error) {
         [self alertWithMessage:NSLocalizedString(@"ipc_errormsg_data_load_failed", @"")];
     }];
@@ -235,17 +241,12 @@
 }
 
 - (void)gotoCloudServicePanel {
-//    [TYCameraCloudServicePanelSDK cloudServicePanelWithDevice:self.device.deviceModel success:^(UIViewController * _Nonnull vc) {
-//        self.topBarView.hidden = YES;
-//        self.navigationController.navigationBar.hidden = NO;
-////        [self.navigationController pushViewController:vc animated:YES];
-//        UINavigationController *navi = (UINavigationController *)vc;
-//        navi.topViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-//        vc.modalPresentationStyle = UIModalPresentationFullScreen;
-//        [self presentViewController:vc animated:YES completion:nil];
-//    } failure:^(NSError * _Nonnull error) {
-//        [self alertWithMessage:@"加载失败"];
-//    }];
+    id<TYCameraCloudServiceProtocol> cloudService = [[TuyaSmartBizCore sharedInstance] serviceOfProtocol:@protocol(TYCameraCloudServiceProtocol)];
+    [cloudService requestCloudServicePageWithDevice:self.device.deviceModel completionBlock:^(__kindof UIViewController *page, NSError *error) {
+        if (page) {
+            [self.navigationController pushViewController:page animated:YES];
+        }
+    }];
 }
 
 - (void)alertWithMessage:(NSString *)text {
@@ -255,10 +256,13 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)playCloudTimePiece:(TuyaSmartCloudTimePieceModel *)pieceModel {
+- (void)playCloudTimePiece:(TuyaSmartCloudTimePieceModel *)pieceModel playTime:(NSInteger)playTime {
     if (!pieceModel) return;
+    if (![pieceModel containsTime:playTime]) {
+        playTime = pieceModel.startTime;
+    }
     __weak typeof(self) weakSelf = self;
-    [self.cloudManager playCloudVideoWithStartTime:pieceModel.startTime endTime:self.selectedDay.endTime isEvent:NO onResponse:^(int errCode) {
+    [self.cloudManager playCloudVideoWithStartTime:playTime endTime:self.selectedDay.endTime isEvent:NO onResponse:^(int errCode) {
         if (errCode) {
             [weakSelf alertWithMessage:NSLocalizedString(@"ipc_status_stream_failed", @"")];
         }else {
@@ -287,13 +291,7 @@
 #pragma mark - table view
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (tableView == self.timePiecesTable) {
-        return self.timePieces.count;
-    }
-    if (tableView == self.eventTable) {
-        return self.eventModels.count;
-    }
-    return 0;
+    return self.eventModels.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -303,25 +301,15 @@
         formatter = [[NSDateFormatter alloc] init];
         formatter.dateFormat = @"HH:mm:ss";
     });
-    if (tableView == self.timePiecesTable) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"timePieces"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"timePieces"];
-        }
-        TuyaSmartCloudTimePieceModel *pieceModel = [self.timePieces objectAtIndex:indexPath.row];
-        cell.textLabel.text = [NSString stringWithFormat:@"%@-%@", [formatter stringFromDate:pieceModel.startDate], [formatter stringFromDate:pieceModel.endDate]];
-        return cell;
-    }else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"event"];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"event"];
-        }
-        TuyaSmartCloudTimeEventModel *eventModel = [self.eventModels objectAtIndex:indexPath.row];
-        [cell.imageView ty_setAESImageWithPath:eventModel.snapshotUrl encryptKey:self.cloudManager.encryptKey placeholderImage:[self placeholder]];
-        cell.textLabel.text = eventModel.describe;
-        cell.detailTextLabel.text = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:eventModel.startTime]];
-        return cell;
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"event"];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"event"];
     }
+    TuyaSmartCloudTimeEventModel *eventModel = [self.eventModels objectAtIndex:indexPath.row];
+    [cell.imageView ty_setAESImageWithPath:eventModel.snapshotUrl encryptKey:self.cloudManager.encryptKey placeholderImage:[self placeholder]];
+    cell.textLabel.text = eventModel.describe;
+    cell.detailTextLabel.text = [formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:eventModel.startTime]];
+    return cell;
 }
 
 - (UIImage *)placeholder {
@@ -336,12 +324,35 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (tableView == self.timePiecesTable) {
-        TuyaSmartCloudTimePieceModel *pieceModel = [self.timePieces objectAtIndex:indexPath.row];
-        [self playCloudTimePiece:pieceModel];
-    }else {
-        TuyaSmartCloudTimeEventModel *eventModel = [self.eventModels objectAtIndex:indexPath.row];
-        [self playCloudEvent:eventModel];
+    TuyaSmartCloudTimeEventModel *eventModel = [self.eventModels objectAtIndex:indexPath.row];
+    [self playCloudEvent:eventModel];
+}
+
+#pragma mark - TuyaSmartCloudManagerDelegate
+
+- (void)cloudManager:(TuyaSmartCloudManager *)cloudManager didReceivedFrame:(CMSampleBufferRef)frameBuffer videoFrameInfo:(TuyaSmartVideoFrameInfo)frameInfo {
+    if (frameInfo.nTimeStamp != self.timeLineView.currentTime) {
+        self.timeLineView.currentTime = frameInfo.nTimeStamp;
+    }
+}
+
+#pragma mark - TuyaTimelineViewDelegate
+
+- (void)timelineViewWillBeginDragging:(TuyaTimelineView *)timeLineView {
+    
+}
+
+- (void)timelineViewDidEndDragging:(TuyaTimelineView *)timeLineView willDecelerate:(BOOL)decelerate {
+    
+}
+
+- (void)timelineViewDidScroll:(TuyaTimelineView *)timeLineView time:(NSTimeInterval)timeInterval isDragging:(BOOL)isDragging {
+    
+}
+
+- (void)timelineView:(TuyaTimelineView *)timeLineView didEndScrollingAtTime:(NSTimeInterval)timeInterval inSource:(id<TuyaTimelineViewSource>)source {
+    if (source) {
+        [self playCloudTimePiece:source playTime:timeInterval];
     }
 }
 
@@ -365,7 +376,7 @@
 
 - (UIButton *)soundButton {
     if (!_soundButton) {
-        _soundButton = [[UIButton alloc] initWithFrame:CGRectMake(8, TopBarHeight + VideoViewHeight - 50, 44, 44)];
+        _soundButton = [[UIButton alloc] initWithFrame:CGRectMake(8, APP_TOP_BAR_HEIGHT + VideoViewHeight - 50, 44, 44)];
         [_soundButton setImage:[UIImage imageNamed:@"ty_camera_soundOff_icon"] forState:UIControlStateNormal];
     }
     return _soundButton;

@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <TuyaSmartCameraKit/TuyaSmartCameraKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "TYCameraTimeLineModel.h"
 
 typedef NSArray<NSNumber *> TYNumberArray;
 typedef NSArray<NSDictionary *> TYDictArray;
@@ -97,7 +98,7 @@ typedef void(^TYPlaybackImageDownloadCallback)(UIImage *image, int errCode);
 
 - (void)stopPreview;
 
-- (void)startPlaybackWithPlayTime:(NSInteger)playTime playbackSlice:(NSDictionary *)timeSlice success:(IPCVoidBlock)success failure:(IPCErrorBlock)failure;
+- (void)startPlaybackWithPlayTime:(NSInteger)playTime timelineModel:(TYCameraTimeLineModel *)model success:(IPCVoidBlock)success failure:(IPCErrorBlock)failure;
 
 - (void)pausePlayback:(IPCVoidBlock)success failure:(IPCErrorBlock)failure;
 

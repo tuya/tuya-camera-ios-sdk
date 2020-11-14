@@ -198,18 +198,12 @@
     self.playMode = TuyaSmartCameraPlayModeNone;
 }
 
-- (void)startPlaybackWithPlayTime:(NSInteger)playTime playbackSlice:(NSDictionary *)timeSlice success:(IPCVoidBlock)success failure:(IPCErrorBlock)failure {
-    if (!timeSlice) { return; }
-    NSNumber *startTime = [timeSlice objectForKey:kTuyaSmartTimeSliceStartTime];
-    NSNumber *stopTime = [timeSlice objectForKey:kTuyaSmartTimeSliceStopTime];
-    if (!startTime || !stopTime) {
-        return;
-    }
+- (void)startPlaybackWithPlayTime:(NSInteger)playTime timelineModel:(TYCameraTimeLineModel *)model success:(IPCVoidBlock)success failure:(IPCErrorBlock)failure {
     if (self.isPreviewing) {
         [self stopPreview];
     }
     _callbacks[kCallBackKeyPlayback] = [_TuyaSmartCallback callbackWithSuccess:success failure:failure];
-    [self.camera startPlayback:playTime startTime:startTime.integerValue stopTime:stopTime.integerValue];
+    [self.camera startPlayback:playTime startTime:model.startTime stopTime:model.stopTime];
     _playbacking = YES;
     self.playMode = TuyaSmartCameraPlayModePlayback;
     [self enableMute:self.isMuted success:nil failure:nil];
@@ -308,7 +302,8 @@
 - (void)enableHD:(BOOL)isHD success:(IPCVoidBlock)success failure:(IPCErrorBlock)failure {
     if (self.previewing) {
         _callbacks[kCallBackKeyHD] = [_TuyaSmartCallback callbackWithSuccess:success failure:failure];
-        [self.camera enableHD:isHD];
+        TuyaSmartCameraDefinition definition = isHD ? TuyaSmartCameraDefinitionHigh : TuyaSmartCameraDefinitionStandard;
+        [self.camera setDefinition:definition];
     }
 }
 
@@ -536,12 +531,12 @@
     [self _taskSuccessWithKey:kCallBackKeyRecord];
 }
 
-- (void)camera:(id<TuyaSmartCameraType>)camera didReceiveDefinitionState:(BOOL)isHd {
-    _HD = isHd;
+- (void)camera:(id<TuyaSmartCameraType>)camera definitionChanged:(TuyaSmartCameraDefinition)definition{
+    _HD = definition >= TuyaSmartCameraDefinitionHigh;
     [self _taskSuccessWithKey:kCallBackKeyHD];
     [self.observers enumerateObjectsUsingBlock:^(id<TuyaSmartCameraObserver> obj, NSUInteger idx, BOOL * stop) {
         if ([obj respondsToSelector:@selector(camera:didReceiveDefinitionState:)]) {
-            [obj camera:self didReceiveDefinitionState:isHd];
+            [obj camera:self didReceiveDefinitionState:_HD];
         }
     }];
 }
@@ -634,7 +629,7 @@
 }
 
 - (void)camera:(id<TuyaSmartCameraType>)camera resolutionDidChangeWidth:(NSInteger)width height:(NSInteger)height {
-    [self.camera getHD];
+    [self.camera getDefinition];
     _videoFrameSize = CGSizeMake(width, height);
 }
 

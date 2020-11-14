@@ -10,10 +10,11 @@
 #import "TuyaSmartCameraControlView.h"
 #import "TYPermissionUtil.h"
 #import "TYCameraCalendarView.h"
-#import "TYCameraRecordListView.h"
 #import "TuyaSmartCamera.h"
 #import "TPDemoViewConstants.h"
 #import "TPDemoProgressUtils.h"
+#import "TYCameraTimeLineModel.h"
+#import <YYModel/YYModel.h>
 
 #define VideoViewWidth [UIScreen mainScreen].bounds.size.width
 #define VideoViewHeight ([UIScreen mainScreen].bounds.size.width / 16 * 9)
@@ -25,7 +26,7 @@
 TuyaSmartCameraObserver,
 TYCameraCalendarViewDelegate,
 TYCameraCalendarViewDataSource,
-TYCameraRecordListViewDelegate>
+TuyaTimelineViewDelegate>
 
 @property (nonatomic, strong) UIView *videoContainer;
 
@@ -41,8 +42,6 @@ TYCameraRecordListViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray<NSNumber *> *playbackDays;
 
-@property (nonatomic, strong) TYCameraRecordListView *recordListView;
-
 @property (nonatomic, strong) UIButton *photoButton;
 
 @property (nonatomic, strong) UIButton *recordButton;
@@ -53,21 +52,30 @@ TYCameraRecordListViewDelegate>
 
 @property (nonatomic, strong) TuyaSmartPlaybackDate *currentDate;
 
+@property (nonatomic, strong) TuyaTimelineView *timeLineView;
+
+@property (nonatomic, strong) NSArray *timeLineModels;
+
+@property (nonatomic, assign) NSInteger playTime;
+
+@property (nonatomic, strong) TYCameraTimeLabel *timeLineLabel;
+
 @end
 
 @implementation TYDemoCameraPlaybackViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = HEXCOLOR(0xd8d8d8);
     [self.view addSubview:self.videoContainer];
     [self.view addSubview:self.indicatorView];
     [self.view addSubview:self.stateLabel];
     [self.view addSubview:self.retryButton];
-    [self.view addSubview:self.recordListView];
+    [self.view addSubview:self.timeLineView];
     [self.view addSubview:self.soundButton];
     [self.view addSubview:self.calendarView];
     [self.view addSubview:self.controlBar];
+    [self.view addSubview:self.timeLineLabel];
     
     [self.retryButton addTarget:self action:@selector(retryAction) forControlEvents:UIControlEventTouchUpInside];
     [self.soundButton addTarget:self action:@selector(soundAction) forControlEvents:UIControlEventTouchUpInside];
@@ -136,10 +144,10 @@ TYCameraRecordListViewDelegate>
     __weak typeof(self) weakSelf = self;
     [self showLoadingWithTitle:@""];
     [self.camera requestTimeSliceWithPlaybackDate:playbackDate complete:^(TYDictArray *result) {
-        weakSelf.recordListView.dataSource = result;
         if (result.count > 0) {
-            NSDictionary *timeslice = result.firstObject;
-            [weakSelf cameraRecordListView:weakSelf.recordListView didSelectedRecord:timeslice];
+            weakSelf.timeLineModels = [NSArray yy_modelArrayWithClass:[TYCameraTimeLineModel class] json:result];
+            weakSelf.timeLineView.sourceModels = weakSelf.timeLineModels;
+            [weakSelf.timeLineView setCurrentTime:0 animated:YES];
         }else {
             [weakSelf stopLoadingWithText:NSLocalizedString(@"ipc_playback_no_records_today", @"")];
         }
@@ -204,6 +212,17 @@ TYCameraRecordListViewDelegate>
     [self.videoContainer addSubview:self.camera.videoView];
     self.camera.videoView.frame = self.videoContainer.bounds;
     [self getRecordAndPlay:[TuyaSmartPlaybackDate new]];
+}
+
+- (void)playbackWithTime:(NSInteger)playTime timeLineModel:(TYCameraTimeLineModel *)model {
+    playTime = [model containsPlayTime:playTime] ? playTime : model.startTime;
+    [self showLoadingWithTitle:@""];
+    [self.camera startPlaybackWithPlayTime:playTime timelineModel:model success:^{
+        [self enableAllControl:YES];
+        [self stopLoadingWithText:@""];
+    } failure:^(NSError *error) {
+        [TPDemoProgressUtils showError:NSLocalizedString(@"ipc_errmsg_record_play_failed", @"")];
+    }];
 }
 
 - (void)soundAction {
@@ -288,28 +307,26 @@ TYCameraRecordListViewDelegate>
     }
 }
 
-#pragma mark - TYCameraRecordListViewDelegate
+#pragma mark - TuyaTimelineViewDelegate
 
-- (void)cameraRecordListView:(TYCameraRecordListView *)listView didSelectedRecord:(NSDictionary *)timeslice {
-    [self showLoadingWithTitle:@""];
-    NSInteger startTime = [[timeslice objectForKey:kTuyaSmartTimeSliceStartTime] integerValue];
-    [self.camera startPlaybackWithPlayTime:startTime playbackSlice:timeslice success:^{
-        [self enableAllControl:YES];
-        [self stopLoadingWithText:@""];
-    } failure:^(NSError *error) {
-        [TPDemoProgressUtils showError:NSLocalizedString(@"ipc_errmsg_record_play_failed", @"")];
-    }];
+- (void)timelineViewWillBeginDragging:(TuyaTimelineView *)timeLineView {
+    
 }
 
-- (void)cameraRecordListView:(TYCameraRecordListView *)listView presentCell:(TYCameraRecordCell *)cell source:(id)source {
-    NSDate *startDate = source[kTuyaSmartTimeSliceStartDate];
-    NSDate *stopDate = source[kTuyaSmartTimeSliceStopDate];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]];
-    formatter.dateFormat = @"HH:mm:ss";
-    cell.startTimeLabel.text = [formatter stringFromDate:startDate];
-    cell.durationLabel.text  = [self _durationTimeStampWithStart:startDate end:stopDate];
-    [cell.durationLabel sizeToFit];
+- (void)timelineViewDidEndDragging:(TuyaTimelineView *)timeLineView willDecelerate:(BOOL)decelerate {
+    
+}
+
+- (void)timelineViewDidScroll:(TuyaTimelineView *)timeLineView time:(NSTimeInterval)timeInterval isDragging:(BOOL)isDragging {
+    self.timeLineLabel.hidden = NO;
+    self.timeLineLabel.timeStr = [NSDate tysdk_timeStringWithTimeInterval:timeInterval timeZone:[NSTimeZone localTimeZone]];
+}
+
+- (void)timelineView:(TuyaTimelineView *)timeLineView didEndScrollingAtTime:(NSTimeInterval)timeInterval inSource:(id<TuyaTimelineViewSource>)source {
+    self.timeLineLabel.hidden = YES;
+    if (source) {
+        [self playbackWithTime:timeInterval timeLineModel:source];
+    }
 }
 
 - (NSString *)_durationTimeStampWithStart:(NSDate *)start end:(NSDate *)end {
@@ -359,6 +376,15 @@ TYCameraRecordListViewDelegate>
         imageName = @"ty_camera_soundOff_icon";
     }
     [self.soundButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
+- (void)camera:(TuyaSmartCamera *)camera didReceiveVideoFrame:(CMSampleBufferRef)sampleBuffer frameInfo:(TuyaSmartVideoFrameInfo)frameInfo {
+    if (self.playTime != frameInfo.nTimeStamp) {
+        self.playTime = frameInfo.nTimeStamp;
+        if (!self.timeLineView.isDecelerating && !self.timeLineView.isDragging) {
+            [self.timeLineView setCurrentTime:self.playTime];
+        }
+    }
 }
 
 
@@ -421,17 +447,6 @@ TYCameraRecordListViewDelegate>
     return _calendarView;
 }
 
-- (TYCameraRecordListView *)recordListView {
-    if (!_recordListView) {
-        CGFloat top = VideoViewHeight + APP_TOP_BAR_HEIGHT + 50;
-        CGFloat width = self.view.frame.size.width;
-        CGFloat height = self.view.frame.size.height - top;
-        _recordListView = [[TYCameraRecordListView alloc] initWithFrame:CGRectMake(0, top, width, height)];
-        _recordListView.delegate = self;
-    }
-    return _recordListView;
-}
-
 - (UIButton *)photoButton {
     if (!_photoButton) {
         _photoButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
@@ -464,7 +479,7 @@ TYCameraRecordListViewDelegate>
 
 - (UIView *)controlBar {
     if (!_controlBar) {
-        CGFloat top = VideoViewHeight + APP_TOP_BAR_HEIGHT;
+        CGFloat top = APP_SCREEN_HEIGHT - 50;
         _controlBar = [[UIView alloc] initWithFrame:CGRectMake(0, top, VideoViewWidth, 50)];
         [_controlBar addSubview:self.photoButton];
         [_controlBar addSubview:self.pauseButton];
@@ -477,9 +492,40 @@ TYCameraRecordListViewDelegate>
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 49.5, VideoViewWidth, 0.5)];
         line.backgroundColor = [UIColor lightGrayColor];
         [_controlBar addSubview:line];
+        _controlBar.backgroundColor = [UIColor whiteColor];
     }
     return _controlBar;
 }
 
+- (TuyaTimelineView *)timeLineView {
+    if (!_timeLineView) {
+        _timeLineView = [[TuyaTimelineView alloc] initWithFrame:CGRectMake(0, self.videoContainer.bottom, [UIScreen mainScreen].bounds.size.width, 150)];
+        _timeLineView.timeHeaderHeight = 24;
+        _timeLineView.showShortMark = YES;
+        _timeLineView.spacePerUnit = 90;
+        _timeLineView.timeTextTop = 6;
+        _timeLineView.delegate = self;
+        _timeLineView.backgroundColor = HEXCOLOR(0xf5f5f5);
+        _timeLineView.backgroundGradientColors = @[];
+        _timeLineView.contentGradientColors = @[(__bridge id)HEXCOLORA(0x4f67ee, 0.62).CGColor, (__bridge id)HEXCOLORA(0x4d67ff, 0.09).CGColor];
+        _timeLineView.contentGradientLocations = @[@(0.0), @(1.0)];
+        _timeLineView.timeStringAttributes = @{NSFontAttributeName : [UIFont systemFontOfSize:9], NSForegroundColorAttributeName : HEXCOLOR(0x999999)};
+        _timeLineView.tickMarkColor = HEXCOLORA(0x000000, 0.1);
+        _timeLineView.timeZone = [NSTimeZone localTimeZone];
+    }
+    return _timeLineView;
+}
+
+
+- (TYCameraTimeLabel *)timeLineLabel {
+    if (!_timeLineLabel) {
+        _timeLineLabel = [[TYCameraTimeLabel alloc] initWithFrame:CGRectMake((self.timeLineView.width - 74) / 2, self.timeLineView.top, 74, 22)];
+        _timeLineLabel.position = 2;
+        _timeLineLabel.hidden = YES;
+        _timeLineLabel.ty_backgroundColor = [UIColor blackColor];
+        _timeLineLabel.textColor = [UIColor whiteColor];
+    }
+    return _timeLineLabel;
+}
 
 @end

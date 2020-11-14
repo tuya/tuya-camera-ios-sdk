@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77757313254D4DA900335637 /* ty_custom_config.json in Resources */ = {isa = PBXBuildFile; fileRef = 77757312254D4DA900335637 /* ty_custom_config.json */; };
 		77C5927E24D3B7E600AD349B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5927D24D3B7E600AD349B /* AppDelegate.m */; };
 		77C5928424D3B7E700AD349B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5928324D3B7E700AD349B /* ViewController.m */; };
 		77C5928724D3B7E700AD349B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C5928524D3B7E700AD349B /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		575C9186993611E3899498F9 /* libPods-TuyaCameraDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TuyaCameraDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EF3C8FAE497EBDB1DE29262 /* Pods-TuyaCameraDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TuyaCameraDemo.debug.xcconfig"; path = "Target Support Files/Pods-TuyaCameraDemo/Pods-TuyaCameraDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		77757312254D4DA900335637 /* ty_custom_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ty_custom_config.json; sourceTree = "<group>"; };
 		77C5927924D3B7E600AD349B /* TuyaCameraDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TuyaCameraDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77C5927C24D3B7E600AD349B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		77C5927D24D3B7E600AD349B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				77C5928A24D3B7E900AD349B /* LaunchScreen.storyboard */,
 				77C5928D24D3B7E900AD349B /* Info.plist */,
 				77C5928E24D3B7E900AD349B /* main.m */,
+				77757312254D4DA900335637 /* ty_custom_config.json */,
 				77C5929524D3C2C100AD349B /* t_s.bmp */,
 			);
 			path = TuyaCameraDemo;
@@ -158,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77757313254D4DA900335637 /* ty_custom_config.json in Resources */,
 				77C5928C24D3B7E900AD349B /* LaunchScreen.storyboard in Resources */,
 				77C5928924D3B7E900AD349B /* Assets.xcassets in Resources */,
 				77C5929624D3C2C100AD349B /* t_s.bmp in Resources */,
@@ -375,7 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7NBB7NF46;
+				DEVELOPMENT_TEAM = 94JFPTRDN5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TuyaCameraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -394,7 +398,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = L7NBB7NF46;
+				DEVELOPMENT_TEAM = 94JFPTRDN5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = TuyaCameraDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
