@@ -1,3 +1,5 @@
+## 注意：当前仓库继承自即将被废弃的涂鸦Github仓库：https://github.com/TuyaInc/tuyasmart_camera_ios_sdk ，请使用当前 Github 仓库进行涂鸦 SDK相关开发。更换远程Github仓库URL的教程，可以参考：https://docs.github.com/cn/free-pro-team@latest/github/using-git/changing-a-remotes-url
+
 # 涂鸦智能摄像头 iOS SDK
 
 [中文版](./README-zh.md) | [English](./README.md)
