@@ -1,4 +1,6 @@
-# TuyaSmartCamera
+## Note: This repository is inherited from the old Tuya Github repository: https://github.com/TuyaInc/tuyasmart_camera_ios_sdk, which will be deprecated soon. Please use this repository for Tuya SDK development instead. For changing the existing remote repository URL, please check this tutorial: https://docs.github.com/en/free-pro-team@latest/github/using-git/changing-a-remotes-url
+
+# Tuya Smart Camera iOS SDK
 
 [中文版](./README-zh.md) | [English](./README.md)
 
@@ -66,3 +68,15 @@ Refer to Details: [Tuya Smart Camera iOS SDK Doc](https://tuyainc.github.io/tuya
 ## ChangeLog
 
 [ChangeLog](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/resource/ipc/version_record.html)
+
+## Support
+
+You can get support from Tuya with the following methods:
+
+* Tuya Smart Help Center: https://support.tuya.com/en/help
+
+* Technical Support Council: https://iot.tuya.com/council/
+
+## License
+
+This Tuya Home iOS SDK Sample is licensed under the MIT License.
