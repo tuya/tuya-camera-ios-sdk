@@ -13,9 +13,9 @@ Tuya Smart Camera SDK provides the interface package for communication with remo
 * Preview pictures that are taken by cameras
 * Play back recorded video of cameras
 * Record video
-* Talk to  remote cameras
+* Talk to remote cameras
 
-## Effcieint integration
+## Efficient integration
 
 #### Use CocoaPods integration（version 8.0 or later is supported）
 
@@ -65,9 +65,9 @@ For more information, see [Tuya Smart Camera iOS SDK](https://developer.tuya.com
 
 6. Run the project. Hardware decoding is used in the SDK. We recommend that you debug with iPhone.
 
-## Change log
+## Changelog
 
-[Change Log](https://developer.tuya.com/en/docs/app-development/ios-app-sdk/extension-sdk/ipc-sdk/versionrecord?id=Ka5vox6pd09cn)
+[Changelog](https://developer.tuya.com/en/docs/app-development/ios-app-sdk/extension-sdk/ipc-sdk/versionrecord?id=Ka5vox6pd09cn)
 
 ## Support
 
