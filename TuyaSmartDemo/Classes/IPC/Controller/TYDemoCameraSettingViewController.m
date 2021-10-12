@@ -2,9 +2,7 @@
 //  TYDemoCameraSettingViewController.m
 //  TuyaSmartCamera_Example
 //
-//  Created by 傅浪 on 2019/3/15.
-//  Copyright © 2019 fulang@tuya.com. All rights reserved.
-//
+//  Copyright (c) 2014-2021 Tuya Inc. (https://developer.tuya.com/)
 
 #import "TYDemoCameraSettingViewController.h"
 #import "TuyaSmartSwitchCell.h"
