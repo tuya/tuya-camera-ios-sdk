@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://registry.code.tuya-inc.top/tuyaIOSCamera/ipc-client-cxx-camera-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'wangjing@tuya.com' => 'wangjing@tuya.com' }
+  s.author           = { 'Tuya SDK' => 'developer@tuya.com' }
   s.source = { :http => "https://airtake-public-data-1254153901.cos.ap-shanghai.myqcloud.com/smart/app/package/sdk/ios/#{s.name}-#{s.version}.zip", :type => "zip" }
 
   s.ios.deployment_target = '9.0'
