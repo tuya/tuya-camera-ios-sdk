@@ -8,10 +8,10 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://registry.code.tuya-inc.top/tuyaIOSSDK/TYSDKDemo.git'
+  s.homepage         = 'https://github.com/tuya/tuya-camera-ios-sdk'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tuya SDK' => 'developer@tuya.com' }
-  s.source           = { :git => 'https://registry.code.tuya-inc.top/tuyaIOSSDK/TYSDKDemo.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/tuya/tuya-camera-ios-sdk.git', :tag => s.version.to_s }
   
   s.ios.deployment_target = '8.0'
   

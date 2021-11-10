@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://registry.code.tuya-inc.top/tuyaIOSCamera/ipc-client-cxx-camera-sdk'
+  s.homepage         = 'https://github.com/tuya/tuya-camera-ios-sdk'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Tuya SDK' => 'developer@tuya.com' }
