@@ -1,23 +1,18 @@
-source 'https://github.com/TuyaInc/TYPublicSpecs.git'
 source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/TuyaInc/TuyaPublicSpecs.git'
 
 platform :ios, '9.0'
 
-target 'TuyaSmartHomeKit_Example' do
-  pod 'TuyaSmartHomeKit'
-  pod 'TuyaSmartCameraKit'
-#  pod 'TuyaSmartCameraT'
-  pod 'TYCameraCloudServicePanelSDK'
-  pod 'TuyaSmartLogger'
+target 'TuyaCameraDemo' do
+
+	pod 'TuyaSmartDemo', :path => '../', :subspecs => [
+	'Base',
+  	'Login',
+  	'DeviceList',
+  	'AddDevice',
+  	'UserInfo',
+  	'IPC']
+  pod 'TuyaCameraUIKit'
+  pod 'TuyaSmartCloudServiceBizBundle'
   
-  pod 'MBProgressHUD', '~> 0.9.2'
-  pod 'BlocksKit'
-  pod 'SDWebImage'
-  pod 'Reachability'
-  pod 'Masonry'
-
-  target 'TuyaSmartHomeKit_Tests' do
-    inherit! :search_paths
-
-  end
 end
